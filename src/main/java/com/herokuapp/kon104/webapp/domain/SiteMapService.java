@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
+import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**
  * Site Map Service
@@ -19,12 +20,15 @@ public class SiteMapService
 {
 
 	@Autowired
+	private HttpRequestUtility hrUtil;
+
+	@Autowired
 	private RequestMappingHandlerMapping rmhm;
 
 	// {{{ public String getSiteMapXml(HttpServletRequest request)
 	public String getSiteMapXml(HttpServletRequest request)
 	{
-		String domain = this.scoopDomainFromURL(request);
+		String domain = hrUtil.getDomainURL(request);
 		List<String> urls = this.collectMappingPaths();
 		String xml = this.buildSiteMapXml(domain, urls);
 
@@ -44,19 +48,12 @@ public class SiteMapService
 	}
 	// }}}
 
-	// {{{ private String scoopDomainFromURL(HttpServletRequest request)
-	private	String scoopDomainFromURL(HttpServletRequest request)
-	{
-		return request.getRequestURL().substring(0, request.getRequestURL().lastIndexOf(request.getRequestURI()));
-	}
-	// }}}
-
 	// {{{ private String buildSiteMapXml(String domain, List<String> urls)
 	private String buildSiteMapXml(String domain, List<String> urls)
 	{
 		StringBuilder sb = new StringBuilder();
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		sb.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">");
+		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+		sb.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n");
 
 		for (String url : urls) {
 			double ver = 0.5;
@@ -66,12 +63,12 @@ public class SiteMapService
 			if (url.equals("/error")) {
 				continue;
 			}
-			sb.append("<url>");
-			sb.append(String.format("<loc>%s%s</loc>", domain, url));
-			sb.append("<lastmod>2020-06-06</lastmod>");
-			sb.append("<changefreq>yearly</changefreq>");
-			sb.append(String.format("<priority>%.1f</priority>", ver));
-			sb.append("</url>");
+			sb.append("\t<url>\n");
+			sb.append(String.format("\t\t<loc>%s%s</loc>\n", domain, url));
+			sb.append("\t\t<lastmod>2020-06-06</lastmod>\n");
+			sb.append("\t\t<changefreq>yearly</changefreq>\n");
+			sb.append(String.format("\t\t<priority>%.1f</priority>\n", ver));
+			sb.append("\t</url>\n");
 		}
 
 		sb.append("</urlset>");

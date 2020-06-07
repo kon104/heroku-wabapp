@@ -6,7 +6,7 @@ header .manual {
 	box-shadow: 2px 2px 4px gray;
 	border-radius: 10px;
 	position: absolute;
-	width: 450px;
+	width: 400px;
 	margin: 2.5mm;
 	transform: translateX(-105%);
 	transition: 0.3s ease-out;
@@ -106,14 +106,14 @@ header .manual.open {
 .manual input[type="file"] {
 	display: none;
 }
-/*
+
 .manual .filepath {
+	width: 225px;
 	display: inline-block;
-	width: 150px;
 	vertical-align: middle;
+	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;
 }
-*/
+
 
