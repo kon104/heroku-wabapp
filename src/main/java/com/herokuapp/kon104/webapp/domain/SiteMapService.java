@@ -63,12 +63,12 @@ public class SiteMapService
 			if (url.equals("/error")) {
 				continue;
 			}
-			sb.append("\t<url>\n");
-			sb.append(String.format("\t\t<loc>%s%s</loc>\n", domain, url));
-			sb.append("\t\t<lastmod>2020-06-06</lastmod>\n");
-			sb.append("\t\t<changefreq>yearly</changefreq>\n");
+			sb.append("<url>\n");
+			sb.append(String.format("  <loc>%s%s</loc>\n", domain, url));
+			sb.append("  <lastmod>2020-06-06</lastmod>\n");
+			sb.append("  <changefreq>yearly</changefreq>\n");
 			sb.append(String.format("\t\t<priority>%.1f</priority>\n", ver));
-			sb.append("\t</url>\n");
+			sb.append("</url>\n");
 		}
 
 		sb.append("</urlset>");
