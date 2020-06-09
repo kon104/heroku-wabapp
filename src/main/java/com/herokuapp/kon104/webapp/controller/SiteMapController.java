@@ -16,7 +16,7 @@ public class SiteMapController
 	private SiteMapService service;
 
 	// {{{ public String sitemap(HttpServletRequest request)
-	@RequestMapping(value = "/sitemap.xml", produces = "application/xml")
+	@RequestMapping(value = "/sitemap.xml", produces = "text/xml")
 	public String sitemap(HttpServletRequest request)
 	{
 		return service.getSiteMapXml(request);
