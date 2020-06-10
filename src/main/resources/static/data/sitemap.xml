@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>https://kon104.herokuapp.com/</loc>
+  <lastmod>2020-06-06</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>https://kon104.herokuapp.com/printaddr/</loc>
+  <lastmod>2020-06-06</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://kon104.herokuapp.com/sitemap.xml</loc>
+  <lastmod>2020-06-06</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://kon104.herokuapp.com/robots.txt</loc>
+  <lastmod>2020-06-06</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
+</url>
+</urlset>
