@@ -9,6 +9,7 @@ import com.herokuapp.kon104.webapp.domain.SiteMapService;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
 /**
  * Site Map Controller
@@ -22,11 +23,10 @@ public class SiteMapController
 	private SiteMapService service;
 
 	// {{{ public String sitemap(HttpServletRequest request)
-//	@RequestMapping(value = "/sitemap.xml", produces = "text/xml")
 	@GetMapping(value = "/sitemap.xml", produces = MediaType.TEXT_XML_VALUE)
-	public String sitemap(HttpServletRequest request)
+	public String sitemap(HttpServletRequest request, Model model)
 	{
-//		return service.getSiteMapXml(request);
+		model.addAttribute("sitemaps", service.getSiteMap(request));
 		return "portal/sitemap";
 	}
 	// }}}

@@ -6,6 +6,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -18,21 +19,19 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 @Service
 public class SiteMapService
 {
-
 	@Autowired
 	private HttpRequestUtility hrUtil;
 
 	@Autowired
 	private RequestMappingHandlerMapping rmhm;
 
-	// {{{ public String getSiteMapXml(HttpServletRequest request)
-	public String getSiteMapXml(HttpServletRequest request)
+	// {{{ public List<SiteMapRecord> getSiteMap(HttpServletRequest request)
+	public List<SiteMapRecord> getSiteMap(HttpServletRequest request)
 	{
 		String domain = hrUtil.getDomainURL(request);
 		List<String> urls = this.collectMappingPaths();
-		String xml = this.buildSiteMapXml(domain, urls);
-
-		return xml;
+		List<SiteMapRecord> sitemaps = this.buildSiteMap(domain, urls);
+		return sitemaps;
 	}
 	// }}}
 
@@ -48,32 +47,26 @@ public class SiteMapService
 	}
 	// }}}
 
-	// {{{ private String buildSiteMapXml(String domain, List<String> urls)
-	private String buildSiteMapXml(String domain, List<String> urls)
+	// {{{ private List<SiteMapRecord> buildSiteMap(String domain, List<String> urls)
+	private List<SiteMapRecord> buildSiteMap(String domain, List<String> urls)
 	{
-		StringBuilder sb = new StringBuilder();
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-		sb.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n");
+		List<SiteMapRecord> sitemaps = new ArrayList<SiteMapRecord>();
 
 		for (String url : urls) {
-			double ver = 0.5;
+			double priority = 0.5;
 			if (url.equals("/")) {
-				ver = 1;
-			} else
-			if (url.equals("/error")) {
-				continue;
+				priority = 1;
+//			} else
+//			if (url.equals("/error")) {
+//				continue;
 			}
-			sb.append("<url>\n");
-			sb.append(String.format("  <loc>%s%s</loc>\n", domain, url));
-			sb.append("  <lastmod>2020-06-06</lastmod>\n");
-			sb.append("  <changefreq>yearly</changefreq>\n");
-			sb.append(String.format("\t\t<priority>%.1f</priority>\n", ver));
-			sb.append("</url>\n");
+			url = String.format("%s%s", domain, url);
+			Date lastmod = new Date();
+			String changefreq = SiteMapRecord.FREQ_YEARLY;
+			sitemaps.add(new SiteMapRecord(url, lastmod, changefreq, priority));
 		}
 
-		sb.append("</urlset>");
-
-		return sb.toString();
+		return sitemaps;
 	}
 	// }}}
 
