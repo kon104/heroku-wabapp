@@ -1,5 +1,4 @@
 
-
 header .manual {
 	background: #fff;
 	border: solid 0.5px #ca0813;
@@ -14,8 +13,6 @@ header .manual {
 header .manual.open {
 	transform: translateX(0);
 	transition: 0.3s ease-out;
-}
-.manual .close-manual {
 }
 
 .manual .manual-win-bar {

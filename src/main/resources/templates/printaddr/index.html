@@ -5,19 +5,19 @@
 <meta name="description" content="ソフトウェアのインストールなしに、ブラウザーだけで年賀状の宛名印刷ができ、CSVファイルで用意した住所録を元に、印刷までをサポートします。ブラウザのJavaScriptで完結するため、住所録等の個人情報をサーバーへ送信することは一切ございません。">
 <meta name="robots" content="index,follow,archive">
 <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale=1.0,minimum-scale=1.0" />
-<link rel="stylesheet" type="text/css" href="../css/main.css" th:href="@{/css/printaddr/main.css}" />
-<link rel="stylesheet" type="text/css" href="../css/card-tozip.css" th:href="@{/css/printaddr/card-tozip.css}" />
-<link rel="stylesheet" type="text/css" href="../css/card-toaddr.css" th:href="@{/css/printaddr/card-toaddr.css}" />
-<link rel="stylesheet" type="text/css" href="../css/card-toname.css" th:href="@{/css/printaddr/card-toname.css}" />
-<link rel="stylesheet" type="text/css" href="../css/card-fmaddr.css" th:href="@{/css/printaddr/card-fmaddr.css}" />
-<link rel="stylesheet" type="text/css" href="../css/card-fmname.css" th:href="@{/css/printaddr/card-fmname.css}" />
-<link rel="stylesheet" type="text/css" href="../css/card-fmzip.css" th:href="@{/css/printaddr/card-fmzip.css}" />
-<link rel="stylesheet" type="text/css" href="../css/card-namespacing.css" th:href="@{/css/printaddr/card-namespacing.css}"/>
-<link rel="stylesheet" type="text/css" href="../css/card-stamp-sample.css" th:href="@{/css/printaddr/card-stamp-sample.css}"/>
-<link rel="stylesheet" type="text/css" href="../css/header.css" th:href="@{/css/printaddr/header.css}" />
-<link rel="stylesheet" type="text/css" href="../css/header-hamburger.css" th:href="@{/css/printaddr/header-hamburger.css}" />
-<link rel="stylesheet" type="text/css" href="../css/header-manual.css" th:href="@{/css/printaddr/header-manual.css}" />
-<link rel="stylesheet" type="text/css" href="../css/at-rule.css" th:href="@{/css/printaddr/at-rule.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/main.css" th:href="@{/css/printaddr/main.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/card-tozip.css" th:href="@{/css/printaddr/card-tozip.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/card-toaddr.css" th:href="@{/css/printaddr/card-toaddr.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/card-toname.css" th:href="@{/css/printaddr/card-toname.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/card-fmaddr.css" th:href="@{/css/printaddr/card-fmaddr.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/card-fmname.css" th:href="@{/css/printaddr/card-fmname.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/card-fmzip.css" th:href="@{/css/printaddr/card-fmzip.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/card-namespacing.css" th:href="@{/css/printaddr/card-namespacing.css}"/>
+<link rel="stylesheet" type="text/css" href="../css/printaddr/card-stamp-sample.css" th:href="@{/css/printaddr/card-stamp-sample.css}"/>
+<link rel="stylesheet" type="text/css" href="../css/printaddr/header.css" th:href="@{/css/printaddr/header.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/header-hamburger.css" th:href="@{/css/printaddr/header-hamburger.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/header-manual.css" th:href="@{/css/printaddr/header-manual.css}" />
+<link rel="stylesheet" type="text/css" href="../css/printaddr/at-rule.css" th:href="@{/css/printaddr/at-rule.css}" />
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Kosugi|Kosugi+Maru|M+PLUS+1p|M+PLUS+Rounded+1c|Noto+Sans+JP|Noto+Serif+JP|Sawarabi+Gothic|Sawarabi+Mincho|Material+Icons&display=swap" />
 <link rel="stylesheet" type="text/css" href="http://mplus-fonts.sourceforge.jp/webfonts/basic_latin/mplus_webfonts.css">
 <link rel="stylesheet" type="text/css" href="http://mplus-fonts.sourceforge.jp/webfonts/general-j/mplus_webfonts.css">
@@ -46,7 +46,7 @@
 	<span></span>
 </a>
 <nav class="manual open">
-<div class="manual-win-bar"><span class="manual-win-title">手順</span><span class="material-icons close-manual manual-win-close">cancel_presentation</span></div>
+<div class="manual-win-bar"><span class="manual-win-title">手順</span><span class="material-icons manual-win-close close-manual">cancel_presentation</span></div>
 <ol start="0">
 	<li><a href="https://sites.google.com/view/printaddr/home" target="_new" class="manual-btn manual-btn-info"><span class="manual-btn-font material-icons">info</span></a>年賀状宛名印刷 について</li>
 	<li><a id="downloadlink" href="../data/address-template.xlsx" th:href="@{/data/printaddr/address-template.xlsx}" class="manual-btn manual-btn-func"><span class="manual-btn-font material-icons">get_app</span></a>
@@ -128,10 +128,10 @@
 	</div>
 </article>
 
-<script src="../js/eventlistener.js" th:src="@{/js/printaddr/eventlistener.js}"></script>
-<script src="../js/main.js" th:src="@{/js/printaddr/main.js}"></script>
-<script src="../js/utility.js" th:src="@{/js/printaddr/utility.js}"></script>
-<script src="../js/manual-toggle.js" th:src="@{/js/printaddr/manual-toggle.js}"></script>
+<script src="../js/printaddr/eventlistener.js" th:src="@{/js/printaddr/eventlistener.js}"></script>
+<script src="../js/printaddr/main.js" th:src="@{/js/printaddr/main.js}"></script>
+<script src="../js/printaddr/utility.js" th:src="@{/js/printaddr/utility.js}"></script>
+<script src="../js/printaddr/manual-toggle.js" th:src="@{/js/printaddr/manual-toggle.js}"></script>
 
 </body>
 </html>
