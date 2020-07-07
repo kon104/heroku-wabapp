@@ -1,7 +1,8 @@
 
 @media screen {
 	body {
-		background: #e0e0e0;
+//		background: #e0e0e0;
+		background: #FFCC99;
 	}
 	.card {
 		box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
