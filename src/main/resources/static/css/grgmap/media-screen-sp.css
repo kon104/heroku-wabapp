@@ -1,0 +1,21 @@
+
+header .menu {
+	margin-left: 5%;
+	margin-right: 5%;
+	width: 90%;
+}
+
+article {
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	width: 95%;
+}   
+
+.map_frm1, .map_frm2 {
+	margin: 0;
+	float: none;
+}
+.maps {
+	width: 100%;
+}
+
