@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
+import com.herokuapp.kon104.webapp.domain.PortalService;
 import com.herokuapp.kon104.webapp.domain.RobotsService;
 import com.herokuapp.kon104.webapp.domain.SiteMapService;
 
@@ -17,6 +18,9 @@ import com.herokuapp.kon104.webapp.domain.SiteMapService;
 public class PortalController
 {
 	@Autowired
+	private PortalService portal;
+
+	@Autowired
 	private SiteMapService sitemap;
 
 	@Autowired
@@ -24,9 +28,11 @@ public class PortalController
 
 	// {{{ public String index()
 	@RequestMapping("/")
-	public String index()
+	public String index(HttpServletRequest request, Model model)
 	{
-		return "redirect:/printaddr/";
+//		return "redirect:/printaddr/";
+		model.addAttribute("domain", portal.getDomain(request));
+		return "portal/index";
 	}
 	// }}}
 
@@ -43,8 +49,6 @@ public class PortalController
 	@GetMapping(value = "/robots.txt", produces = MediaType.TEXT_PLAIN_VALUE)
 	public String robots(HttpServletRequest request, Model model)
 	{
-//		return service.getRobotsText(request);
-//		model.addAttribute("sitemap_url", "https://kon104.xxx.com/sitemap.xml");
 		model.addAttribute("sitemap_url", robots.getSiteMapUrl(request));
 		return "portal/robots";
 	}

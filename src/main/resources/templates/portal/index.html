@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kon104's web apps</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../css/portal/font.css" th:href="@{/css/portal/font.css}" />
+<link rel="stylesheet" type="text/css" href="../css/portal/main.css" th:href="@{/css/portal/main.css}" />
+<link rel="stylesheet" type="text/css" href="../css/portal/header.css" th:href="@{/css/portal/header.css}" />
+<link rel="stylesheet" type="text/css" href="../css/portal/section.css" th:href="@{/css/portal/section.css}" />
+<link rel="stylesheet" type="text/css" href="../css/portal/footer.css" th:href="@{/css/portal/footer.css}" />
+</head>
+
+<body>
+
+<main>
+
+<header>
+	<p th:text="${domain}">domain</p>
+</header>
+
+<section class="introduction">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<h1>Web Appliations</h1>
+				<h2>We made some useful applications for daily life and seasonal events.</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="webapp col-xs-12 col-sm-6 col-lg-6">
+				<a href="../printaddr/index.html" th:href="@{/printaddr/}">
+				<p>年賀状宛名印刷</p>
+				<img class="img-responsive" src="../image/portal/printaddr.png" th:src="@{/image/portal/printaddr.png}" alt="">
+				<p>Print address on greeting card</p>
+				</a>
+			</div>
+			<div class="webapp col-xs-12 col-sm-6 col-lg-6">
+				<a href="../grgmap/index.html" th:href="@{/grgmap/}">
+				<p>保管場所の所在図・配置図 作成</p>
+				<img class="img-responsive" src="../image/portal/grgmap.png" th:src="@{/image/portal/grgmap.png}" alt="">
+				<p>Garage Map Maker</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<footer id="footer">
+	<div class="copyright">Copyright (C) 2020 kon104. All right reserved.</div>
+</footer>
+
+</main>
+
+</body>
+</html>

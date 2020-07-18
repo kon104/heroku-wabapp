@@ -23,7 +23,24 @@ public class HttpRequestUtility
 	// {{{ public String getDomainURL(HttpServletRequest request)
 	public String getDomainURL(HttpServletRequest request)
 	{
-		return request.getRequestURL().substring(0, request.getRequestURL().lastIndexOf(request.getRequestURI()));
+		String url = request.getRequestURL().toString();
+		String uri = request.getRequestURI();
+		int startIdxUri = url.lastIndexOf(uri);
+		String domainUrl = url.substring(0, startIdxUri);
+
+		return domainUrl;
+	}
+	// }}}
+
+	// {{{ public String getDomain(HttpServletRequest request)
+	public String getDomain(HttpServletRequest request)
+	{
+		String domainUrl = this.getDomainURL(request);
+		final String delimiter = "://";
+		int startIdxDomain = domainUrl.indexOf(delimiter) + delimiter.length();
+		String domain = domainUrl.substring(startIdxDomain);
+
+		return domain;
 	}
 	// }}}
 

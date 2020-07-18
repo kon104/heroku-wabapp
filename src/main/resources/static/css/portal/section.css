@@ -1,0 +1,41 @@
+
+.introduction{
+	padding:20px 0;
+	text-transform: uppercase;
+}
+.introduction h1{
+	margin-bottom:0;
+	color:#999999;
+	font-size:28px;
+	letter-spacing:2px;
+}
+.introduction h2{
+	margin:15px auto 20px;
+	color:#666666;
+	font-size:12px;
+	letter-spacing:2px;
+}
+
+.introduction .webapp{
+	margin-bottom:30px;
+}
+.introduction .webapp p{
+	margin: 20px auto;
+	font-size:18px;
+	letter-spacing:1px;
+}
+.introduction .webapp a{
+	color:#333;
+}
+.introduction .webapp a:hover{
+	color: #00c8aa;
+	text-decoration:none;
+	outline:none;
+}
+.introduction .webapp a img{
+	transition:all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+}
+.introduction .webapp a:hover img{
+	opacity:0.7;
+}
+
