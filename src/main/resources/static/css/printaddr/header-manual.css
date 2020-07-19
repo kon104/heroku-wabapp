@@ -5,8 +5,8 @@ header .manual {
 	box-shadow: 2px 2px 4px gray;
 	border-radius: 10px;
 	position: absolute;
-	width: 400px;
-	margin: 2.5mm;
+	width: 380px;
+	margin: 15px 10px;
 	transform: translateX(-105%);
 	transition: 0.3s ease-out;
 }
@@ -31,7 +31,7 @@ header .manual.open {
 	font-size: 16px;
 }
 .manual .manual-win-close {
-	display: table-cell;
+	display: none;
 	text-align: right;
 	width: 25px;
 	padding-right: 5px;
@@ -106,7 +106,8 @@ header .manual.open {
 }
 
 .manual .filepath {
-	width: 225px;
+	width: 195px;
+//	width: 225px;
 	display: inline-block;
 	vertical-align: middle;
 	white-space: nowrap;

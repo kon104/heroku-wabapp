@@ -1,19 +1,30 @@
 
 @media screen {
 	body {
-//		background: #e0e0e0;
 		background: #FFCC99;
 	}
 	.card {
 		box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
-		margin: 5mm;
+		margin: 15px;
 	}
 }
 
 @media screen and (max-width: 480px) {
+	header h1 {
+		padding-left: 60px;
+	}
+	header .hamburger {
+		display: flex;
+	}
 	header .manual {
 		width: 97%;
 		margin: 1.5% 1.5% 1.5% 1.5%;
+	}
+	header .manual .manual-win-close {
+		display: table-cell;
+	}
+	article {
+		padding-left: 0px;
 	}
 }
 
@@ -27,6 +38,7 @@
 	}
 	article {
 		padding-top: 0px;
+		padding-left: 0px;
 	}
 }
 
