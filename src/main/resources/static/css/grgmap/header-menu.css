@@ -42,8 +42,9 @@ header .menu.open {
 	cursor: pointer;
 }
 
-.menu ol {
-	margin: 8px 0px 16px 0px;
+.menu ol,
+.menu ul {
+	margin: 8px 0px 8px 0px;
 	padding-left: 30px;
 	font-size: 16px;
 }

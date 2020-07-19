@@ -31,7 +31,9 @@ public class PortalController
 	public String index(HttpServletRequest request, Model model)
 	{
 //		return "redirect:/printaddr/";
+
 		model.addAttribute("domain", portal.getDomain(request));
+		model.addAttribute("cpyear", portal.getCopyrightYear());
 		return "portal/index";
 	}
 	// }}}
