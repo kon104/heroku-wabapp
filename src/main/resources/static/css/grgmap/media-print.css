@@ -17,6 +17,9 @@ body {
 article {
 	padding-top: 27.5mm;
 }
+.maps {
+	box-shadow: none;
+}
 #map_ov {
 	margin-left: 25mm;
 }

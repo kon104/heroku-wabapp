@@ -10,6 +10,7 @@
 	border: solid 1px gray;
 	width: 120mm;
 	height: 120mm;
+	box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
 }
 .maps div > img {
 	position: absolute;

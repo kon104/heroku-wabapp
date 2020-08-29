@@ -1,0 +1,17 @@
+
+.ad-sp {
+	display: none;
+}
+
+.map_title {
+	display: table;
+	margin: 4px 0;
+	border-left: double 10px #000;
+	border-bottom: solid 2px #000;
+	width: 97.5%;
+}   
+.map_title_cell {
+	display: table-cell;
+	padding-left: 5px;
+}   
+
