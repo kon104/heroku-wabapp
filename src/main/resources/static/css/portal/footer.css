@@ -1,7 +1,7 @@
 
 footer{
 	background:#101e2a;
-	padding:50px 0;
+	padding:15px 0;
 }
 footer div.copyright{
 	color:#fff;
@@ -10,7 +10,7 @@ footer div.copyright{
 	font-size:12px;
 	text-transform:uppercase;
 	letter-spacing:2px;
-	line-height:19px;
+	line-height:30px;
 }
 footer div.copyright a{
 	color:#999999;

@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="../css/printaddr/header.css" th:href="@{/css/printaddr/header.css}">
 <link rel="stylesheet" type="text/css" href="../css/printaddr/header-hamburger.css" th:href="@{/css/printaddr/header-hamburger.css}">
 <link rel="stylesheet" type="text/css" href="../css/printaddr/header-manual.css" th:href="@{/css/printaddr/header-manual.css}">
+<link rel="stylesheet" type="text/css" href="../css/portal/footer.css" th:href="@{/css/portal/footer.css}">
 <link rel="stylesheet" type="text/css" href="../css/printaddr/at-rule.css" th:href="@{/css/printaddr/at-rule.css}">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Kosugi|Kosugi+Maru|M+PLUS+Rounded+1c|Noto+Sans+JP|Noto+Serif+JP|Material+Icons&display=swap">
 <!--
@@ -122,6 +123,10 @@
 	</section>
 	</div>
 </article>
+
+<footer id="footer" class="no_print">
+	<div class="copyright">Copyright (C) <span th:text="${cpyear}">2020</span> kon104. All right reserved.</div>
+</footer>
 
 <script src="../js/printaddr/eventlistener.js" th:src="@{/js/printaddr/eventlistener.js}"></script>
 <script src="../js/printaddr/main.js" th:src="@{/js/printaddr/main.js}"></script>
