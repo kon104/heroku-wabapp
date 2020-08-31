@@ -1,5 +1,4 @@
 
-
 // {{{ function createCards(reader)
 function createCards(reader) {
 
@@ -47,8 +46,8 @@ function refreshCardsNode() {
 
 	var cardsNew = document.createElement('div');
 	cardsNew.id = 'cards';
-	var article = document.getElementsByTagName('article');
-	article[0].appendChild(cardsNew);
+	var content = document.getElementById('content');
+	content.appendChild(cardsNew);
 
 	return cardsNew;
 }

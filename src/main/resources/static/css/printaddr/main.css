@@ -2,6 +2,16 @@
 body {
 	margin: 0;
 	padding:0;
+	background: #FFCC99;
+}
+
+.ad-pc {
+	margin: 15px 0 0 15px;
+}
+.ad-sp {
+	margin: 15px 0 0 15px;
+	text-align: center;
+	display: none;
 }
 
 .card {
@@ -9,8 +19,10 @@ body {
 	background-size: 100% 100%;
 	width:100mm;
 	height:148mm;
+	margin: 15px 15px 0 15px;
 	position: relative;
 	page-break-after: always;
+	box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
 }
 
 section div {

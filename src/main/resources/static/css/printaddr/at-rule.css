@@ -1,12 +1,5 @@
 
 @media screen {
-	body {
-		background: #FFCC99;
-	}
-	.card {
-		box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
-		margin: 15px;
-	}
 }
 
 @media screen and (max-width: 480px) {
@@ -26,19 +19,30 @@
 	article {
 		padding-left: 0px;
 	}
+	.ad-pc {
+		display: none;
+	}
+	.ad-sp {
+		display: inline;
+	}
 }
 
 @media print {
-	.no_print{
+	.no-print{
 		display: none;
 	}
 	body {
 		width:100mm;	// needed for Chrome.
 		height:148mm;	// needed for Chrome.
+		background: none;
 	}
 	article {
 		padding-top: 0px;
 		padding-left: 0px;
+	}
+	.card {
+		margin: 0;
+		box-shadow: none;
 	}
 }
 
