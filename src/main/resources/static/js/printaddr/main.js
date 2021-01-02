@@ -9,7 +9,7 @@ function createCards(reader) {
 	var fmAddrs;
 	for (var i = 0; i < rows.length; i++) {
 		var fields = rows[i].split(',');
-		if (fields.length < 9) {
+		if (fields.length < 11) {
 			continue;
 		}
 		if (i === 0) {
@@ -19,15 +19,15 @@ function createCards(reader) {
 			// from: name
 			var lastName = fields[1];
 			var firstName = fields[2];
-			var wifeName = fields[3];
-			var childName = fields[4];
+			var wifeName = fields[5];
+			var childName = fields[6];
 			fmNames = buildNameList(lastName, firstName, wifeName, childName);
 			// from: zip
-			fmZip = splitZip(fields[5]);
+			fmZip = splitZip(fields[7]);
 			// from: address
-			var state = fields[6];
-			var city = fields[7];
-			var addrline = fields[8];
+			var state = fields[8];
+			var city = fields[9];
+			var addrline = fields[10];
 			fmAddrs = buildAddressList(state, city, addrline);
 		} else {
 			// to
@@ -61,14 +61,14 @@ function createCardSection(fields, fmZip, fmAddrs, fmNames) {
 	card.className = 'card';
 
 	// receiver's zip code
-	var toZip = splitZip(fields[5]);
+	var toZip = splitZip(fields[7]);
 	putPartsOfZip(toZip[0], card, 'tozip3', 3);
 	putPartsOfZip(toZip[1], card, 'tozip4', 4);
 
 	// receiver's address
-	var state = fields[6];
-	var city = fields[7];
-	var addrline = fields[8];
+	var state = fields[8];
+	var city = fields[9];
+	var addrline = fields[10];
 	var toAddrs = buildAddressList(state, city, addrline);
 	putPartsOfAddress(toAddrs[0], card, 'toaddr1', 't-l');
 	putPartsOfAddress(toAddrs[1], card, 'toaddr2', 't-r');
@@ -77,8 +77,8 @@ function createCardSection(fields, fmZip, fmAddrs, fmNames) {
 	// receiver's name
 	var lastName = fields[1];
 	var firstName = fields[2];
-	var wifeName = fields[3];
-	var childName = fields[4];
+	var wifeName = fields[5];
+	var childName = fields[6];
 	var toNames = buildNameList(lastName, firstName, wifeName, childName);
 	for (var i = 0, j = 1; i < toNames.length; i++, j++) {
 		if ((i === 0) && (toNames.length < 3)) {
@@ -98,9 +98,9 @@ function createCardSection(fields, fmZip, fmAddrs, fmNames) {
 
 	// sender's name
 	for (var i = 0, j = 1; i < fmNames.length; i++, j++) {
-		if ((i === 0) && (fmNames.length < 3)) {
-			j++;
-		}
+//		if ((i === 0) && (fmNames.length < 3)) {
+//			j++;
+//		}
 		putPartsOfName(fmNames[i], card, j, 'fmname', 'fmname-ls');
 	}
 
