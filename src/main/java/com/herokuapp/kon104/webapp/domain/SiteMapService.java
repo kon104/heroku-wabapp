@@ -36,9 +36,10 @@ public class SiteMapService
 			double priority = 0.5;
 			if (path.equals("/")) {
 				priority = 1;
-//			} else
-//			if (path.equals("/error")) {
-//				continue;
+			} else
+			if (path.equals("/error") ||
+			    path.startsWith("/private/")) {
+				continue;
 			}
 			String url = String.format("%s%s", domain, path);
 			Date lastmod = new Date();
