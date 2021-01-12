@@ -26,7 +26,7 @@ public class PortalController
 	@Autowired
 	private RobotsService robots;
 
-	// {{{ public String index()
+	// {{{ public String index(HttpServletRequest request, Model model)
 	@RequestMapping("/")
 	public String index(HttpServletRequest request, Model model)
 	{
@@ -38,7 +38,7 @@ public class PortalController
 	}
 	// }}}
 
-	// {{{ public String sitemap(HttpServletRequest request)
+	// {{{ public String sitemap(HttpServletRequest request, Model model)
 	@GetMapping(value = "/sitemap.xml", produces = MediaType.TEXT_XML_VALUE)
 	public String sitemap(HttpServletRequest request, Model model)
 	{
@@ -47,7 +47,7 @@ public class PortalController
 	}
 	// }}}
 
-	// {{{ public String robots(HttpServletRequest request)
+	// {{{ public String robots(HttpServletRequest request, Model model)
 	@GetMapping(value = "/robots.txt", produces = MediaType.TEXT_PLAIN_VALUE)
 	public String robots(HttpServletRequest request, Model model)
 	{

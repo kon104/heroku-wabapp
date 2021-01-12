@@ -21,94 +21,50 @@
 <div id="index" class="pagelink">
 <h2>目次</h2>
 <ul>
-	<li><a href="#4689">4689: Ｚホールディングス(株)</a></li>
-	<li><a href="#3402">3402: 東レ(株)</a></li>
-	<li><a href="#4902">4902: コニカミノルタ(株)</a></li>
-	<li><a href="#5020">5020: ＥＮＥＯＳホールディングス(株)</a></li>
-	<li><a href="#9434">9434: ソフトバンク(株)</a></li>
-	<li><a href="#9508">9508: 九州電力(株)</a></li>
-	<li><a href="#9984">9984: ソフトバンクグループ(株)</a></li>
+	<li th:each="moveavg : ${moveavgs}"><a th:href="'#' + ${moveavg.code}" th:text="${moveavg.code} + ': ' + ${moveavg.company}"></a></li>
 	<li><a href="#hints">ヒント</a></li>
 </ul>
 </div>
 
-<div id="4689" class="pagelink">
-<a href="#index">Back to Index</a>
-<h2>4689: Ｚホールディングス(株)</h2>
-<div id="dboard4689">
-	<div id="candle4689" class="candle"></div>
-	<div id="ctrl4689" class="ctrl"></div>
+<section th:each="moveavg : ${moveavgs}">
+<div th:id="${moveavg.code}" class="pagelink">
+	<a href="#index">Back to Index</a>
+	<h2 th:text="${moveavg.code} + ': ' + ${moveavg.company}"></h2>
+	<div th:id="'dboard' + ${moveavg.code}">
+		<div th:id="'candle' + ${moveavg.code}" class="candle"></div>
+		<div th:id="'ctrl' + ${moveavg.code}" class="ctrl"></div>
+	</div>
 </div>
-</div>
+</section>
 
-<div id="3402" class="pagelink">
-<a href="#index">Back to Index</a>
-<h2>3402: 東レ(株)</h2>
-<div id="dboard3402">
-	<div id="candle3402" class="candle"></div>
-	<div id="ctrl3402" class="ctrl"></div>
-</div>
-</div>
 
-<div id="4902" class="pagelink">
-<a href="#index">Back to Index</a>
-<h2>4902: コニカミノルタ(株)</h2>
-<div id="dboard4902">
-	<div id="candle4902" class="candle"></div>
-	<div id="ctrl4902" class="ctrl"></div>
-</div>
-</div>
-
-<div id="5020" class="pagelink">
-<a href="#index">Back to Index</a>
-<h2>5020: ＥＮＥＯＳホールディングス(株)</h2>
-<div id="dboard5020">
-	<div id="candle5020" class="candle"></div>
-	<div id="ctrl5020" class="ctrl"></div>
-</div>
-</div>
-
-<div id="9434" class="pagelink">
-<a href="#index">Back to Index</a>
-<h2>9434: ソフトバンク(株)</h2>
-<div id="dboard9508">
-	<div id="candle9434" class="candle"></div>
-	<div id="ctrl9434" class="ctrl"></div>
-</div>
-</div>
-
-<div id="9508" class="pagelink">
-<a href="#index">Back to Index</a>
-<h2>9508: 九州電力(株)</h2>
-<div id="dboard9508">
-	<div id="candle9508" class="candle"></div>
-	<div id="ctrl9508" class="ctrl"></div>
-</div>
-</div>
-
-<div id="9984" class="pagelink">
-<a href="#index">Back to Index</a>
-<h2>9984: ソフトバンクグループ(株)</h2>
-<div id="dboard9984">
-	<div id="candle9984" class="candle"></div>
-	<div id="ctrl9984" class="ctrl"></div>
-</div>
-</div>
-
+<section>
 <div id="hints" class="pagelink">
-<a href="#index">Back to Index</a>
-<h2>ヒント</h2>
-<ul>
-	<li><a href="https://www.jprime.jp/articles/-/19724?page=4" target="_blank" rel="noopener">売り時・買い時を見極める株価トレンドの見方</a></li>
-	<li><a href="https://www.jibunbank.co.jp/products/foreign_deposit/chart/help/sma/" target="_blank" rel="noopener">チャートの見方</a></li>
-<ul>
+	<a href="#index">Back to Index</a>
+	<h2>ヒント</h2>
+	<ul>
+		<li><a href="https://www.jprime.jp/articles/-/19724?page=4" target="_blank" rel="noopener">売り時・買い時を見極める株価トレンドの見方</a></li>
+		<li><a href="https://www.jibunbank.co.jp/products/foreign_deposit/chart/help/sma/" target="_blank" rel="noopener">チャートの見方</a></li>
+	<ul>
 </div>
+</section>
 
 </article>
 
 <script src="../../js/private/stock/scroll.js" th:src="@{/js/private/stock/scroll.js}"></script>
 <script src="../../js/private/stock/drawchart.js" th:src="@{/js/private/stock/drawchart.js}"></script>
-<script src="../../js/private/stock/moveavg.js" th:src="@{/js/private/stock/moveavg.js}"></script>
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+google.charts.load('current', {'packages':['corechart', 'controls']});
+
+/*[# th:each="moveavg : ${moveavgs}"]*/
+google.charts.setOnLoadCallback(function(){loadChart(
+    [[${moveavg.code}]], [[${moveavg.url}]]);});
+/*[/]*/
+
+/*]]>*/
+</script>
 
 </body>
 </html>

@@ -1,8 +1,11 @@
 package com.herokuapp.kon104.webapp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.herokuapp.kon104.webapp.domain.StockMoveAvgService;
 
 /**
  * Private Apps Area
@@ -13,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PrivateController
 {
 
-	// {{{ public String index(Model model)
+	@Autowired
+	private StockMoveAvgService moveavg;
+
+	// {{{ public String index()
 	@GetMapping("/")
 	public String index()
 	{
@@ -21,10 +27,11 @@ public class PrivateController
 	}
 	// }}}
 
-	// {{{ public String stockMoveAvg()
+	// {{{ public String stockMoveAvg(Model model)
 	@GetMapping("/stock/moveavg/")
-	public String stockMoveAvg()
+	public String stockMoveAvg(Model model)
 	{
+		model.addAttribute("moveavgs", moveavg.getMoveAvg());
 		return "private/stock/moveavg";
 	}
 	// }}}
