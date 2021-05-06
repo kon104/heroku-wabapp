@@ -1,0 +1,8 @@
+
+security:
+  basicauth: # generate a hash at 'https://tool-taro.com/hash/' beforehand.
+    name: 07f0eb95b88179306548d80af64eae1d8a2bd47ab1a936e8d5f308b0b14cd385dd93ae9485a4142bf937d574bfb7b3da58e41c8fcf865430d45eeeed61c5bb1f
+    pass: 0df8446cc922cd4a1824435876346895615586eec334cf3d89850cde34c9a0b8819a32bcc0477cd78b0b05b3c8b5dd3c78c9a07350e5c0385862268f754208b3
+    algo: SHA-512
+    digit: 128
+
