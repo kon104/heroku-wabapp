@@ -14,16 +14,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class BasicAuthenticationProvider implements AuthenticationProvider {
 
-	@Value("${security.basicauth.name}")
+	@Value("${security.bauth.n}")
 	private String name = null;
 
-	@Value("${security.basicauth.pass}")
+	@Value("${security.bauth.p}")
 	private String pass = null;
 
-	@Value("${security.basicauth.algo}")
+	@Value("${security.bauth.algo}")
 	private String algo = null;
 
-	@Value("${security.basicauth.digit}")
+	@Value("${security.bauth.digit}")
 	private int digit = -1;
 
 	// {{{ public Authentication authenticate(Authentication authentication) throws AuthenticationException

@@ -36,4 +36,12 @@ public class PrivateController
 	}
 	// }}}
 
+	// {{{ public String studyEnglish()
+	@GetMapping("/study/english/")
+	public String studyEnglish()
+	{
+		return "private/study/english";
+	}
+	// }}}
+
 }
