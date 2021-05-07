@@ -1,38 +1,28 @@
 package com.herokuapp.kon104.webapp.domain;
 
-//	import org.springframework.web.bind.annotation.RestController;
-//	import org.springframework.web.bind.annotation.RequestMapping;
-//	import org.springframework.web.bind.annotation.RequestMethod;
-//	import org.springframework.web.bind.annotation.ResponseBody;
-//	import org.springframework.http.HttpHeaders;
-//	import org.springframework.http.HttpStatus;
-//	import org.springframework.http.ResponseEntity;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
-import java.net.URL;
-import java.net.HttpURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import com.herokuapp.kon104.webapp.domain.SentenceJpn2Eng;
 
 @Service
 public class StudyEnglishService
 {
 
+	@Value("${apps.private.study.english.url}")
+	private String sheetUrl = null;
+
     // {{{ public List<SentenceJpn2Eng> main()
     public List<SentenceJpn2Eng> main()
 	{
-		String url = "https://spreadsheets.google.com/"
-			+ "feeds/list/"
-			+ "1zHOtL6kBNJ9K_VB7hpC9Z2O0tAEkKs96e3iFHSDQxts/1"
-			+ "/public/values?alt=json";
-
-		String responseBody = this.requestHttpGET(url);
+		String responseBody = this.requestHttpGET(this.sheetUrl);
 		List<SentenceJpn2Eng> beanList = this.replaceGssJson2Bean(responseBody);
 
 		return beanList;
