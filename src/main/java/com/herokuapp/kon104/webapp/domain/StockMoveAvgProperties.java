@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Setter
 public class StockMoveAvgProperties
 {
-//	private Map<String, String> codes;
 	private List<String> codes;
 	private Map<String, String> companies;
 	private Map<String, String> urls;
