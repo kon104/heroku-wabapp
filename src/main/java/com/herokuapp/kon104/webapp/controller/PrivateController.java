@@ -36,6 +36,8 @@ public class PrivateController
 	}
 	// }}}
 
+	// Section of Studying
+
 	// {{{ public String studyEnglish()
 	@GetMapping("/study/english/")
 	public String studyEnglish()
@@ -49,6 +51,16 @@ public class PrivateController
 	public String studyWordbook()
 	{
 		return "private/study/wordbook/index";
+	}
+	// }}}
+
+	// Section of Sample
+
+	// {{{ public String studyWordbook()
+	@GetMapping("/sample/turn-jp/")
+	public String sampleTrunjp()
+	{
+		return "private/sample/turn-jp/index";
 	}
 	// }}}
 
