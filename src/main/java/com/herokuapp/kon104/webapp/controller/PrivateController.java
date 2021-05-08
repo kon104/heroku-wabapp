@@ -32,7 +32,7 @@ public class PrivateController
 	public String stockMoveAvg(Model model)
 	{
 		model.addAttribute("moveavgs", moveavg.getMoveAvg());
-		return "private/stock/moveavg";
+		return "private/stock/moveavg/index";
 	}
 	// }}}
 
@@ -40,7 +40,15 @@ public class PrivateController
 	@GetMapping("/study/english/")
 	public String studyEnglish()
 	{
-		return "private/study/english";
+		return "private/study/english/index";
+	}
+	// }}}
+
+	// {{{ public String studyWordbook()
+	@GetMapping("/study/wordbook/")
+	public String studyWordbook()
+	{
+		return "private/study/wordbook/index";
 	}
 	// }}}
 
