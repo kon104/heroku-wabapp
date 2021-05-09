@@ -19,11 +19,11 @@ public class StudyEnglishService
 	@Value("${apps.private.study.english.url}")
 	private String sheetUrl = null;
 
-    // {{{ public List<SentenceJpn2Eng> main()
-    public List<SentenceJpn2Eng> main()
+    // {{{ public List<SentenceJpn2EngRecord> getList()
+    public List<SentenceJpn2EngRecord> getList()
 	{
 		String responseBody = this.requestHttpGET(this.sheetUrl);
-		List<SentenceJpn2Eng> beanList = this.replaceGssJson2Bean(responseBody);
+		List<SentenceJpn2EngRecord> beanList = this.replaceGssJson2Bean(responseBody);
 
 		return beanList;
 	}
@@ -56,8 +56,8 @@ public class StudyEnglishService
 	}
 	// }}}
 
-    // {{{ private List<SentenceJpn2Eng> replaceGssJson2Bean(String json)
-    private List<SentenceJpn2Eng> replaceGssJson2Bean(String json)
+    // {{{ private List<SentenceJpn2EngRecord> replaceGssJson2Bean(String json)
+    private List<SentenceJpn2EngRecord> replaceGssJson2Bean(String json)
 	{
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode node = null;
@@ -67,12 +67,16 @@ public class StudyEnglishService
 			e.printStackTrace();
 		}
 
-		List<SentenceJpn2Eng> beanList = new ArrayList<SentenceJpn2Eng>();
+		List<SentenceJpn2EngRecord> beanList = new ArrayList<SentenceJpn2EngRecord>();
 		for (JsonNode n : node.get("feed").get("entry")) {
-			SentenceJpn2Eng sentence = new SentenceJpn2Eng();
+			SentenceJpn2EngRecord sentence = new SentenceJpn2EngRecord();
 			String colSrc = n.get("gsx$source").get("$t").asText();
 			if ((colSrc != null) && (colSrc != "")) {
 				sentence.setSource(colSrc);
+			}
+			String colNo = n.get("gsx$sourceno").get("$t").asText();
+			if ((colNo != null) && (colNo != "")) {
+				sentence.setSourceno(colNo);
 			}
 			String colJpn = n.get("gsx$japanese").get("$t").asText();
 			if ((colJpn != null) && (colJpn != "")) {
