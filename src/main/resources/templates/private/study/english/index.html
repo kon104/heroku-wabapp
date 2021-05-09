@@ -35,6 +35,7 @@ var dataTable = new Tabulator("#example-table", {
 	placeholder:"No Data Set",
     columns:[
         {title:"Source", field:"source", headerFilter:"select", headerFilterParams:{values:true}, width:100},
+        {title:"SrcNo", field:"sourceno", headerFilter:"select", headerFilterParams:{values:true, sortValuesList: "asc"}, width:80},
         {title:"Japanese", field:"japanese", formatter:"textarea", headerFilter:"input"},
         {title:"English", field:"english", formatter:"textarea", headerFilter:"input"},
     ],

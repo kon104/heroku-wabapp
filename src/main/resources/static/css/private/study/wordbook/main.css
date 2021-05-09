@@ -1,0 +1,61 @@
+
+.paper {
+	background-image: url(../../../../image/private/study/wordbook/paper.jpg);
+}
+
+.description {
+	margin: 40px;
+}
+
+.center {
+	width: 100%;
+	text-align: center;
+}
+
+.question,
+.ans_eng,
+.ans_src,
+.ans_srcno {
+	padding: 5px;
+	border: thin solid #a9a9a9;
+	background-color: #ffffff;
+	font-size: 1.35rem;
+}
+
+.question,
+.btn,
+.ans_eng,
+.ans_src,
+.ans_srcno {
+	margin-bottom: 10px;
+}
+
+.question,
+.ans_eng {
+	height: 131px;
+}
+
+.answer {
+	display:none;
+}
+
+.flipbook h1 {
+	margin: 0px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	background: #f7f7f7;
+	border-left: solid 6px #ff7c5c;
+	color: #ff7c5c;
+	font-weight: bold;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+	width: 70%;
+}
+.btn:active {
+	box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+	transform: translateY(2px);
+}
+
