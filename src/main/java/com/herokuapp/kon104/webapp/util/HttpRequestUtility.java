@@ -20,6 +20,14 @@ public class HttpRequestUtility
 	@Autowired
 	private RequestMappingHandlerMapping rmhm;
 
+	// {{{ public String getURL(HttpServletRequest request)
+	public String getURL(HttpServletRequest request)
+	{
+		String url = request.getRequestURL().toString();
+		return url;
+	}
+	// }}}
+
 	// {{{ public String getDomainURL(HttpServletRequest request)
 	public String getDomainURL(HttpServletRequest request)
 	{
