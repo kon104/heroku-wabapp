@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="index,follow,archive">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>YConnect v2</title>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167158475-1"></script>
+<script src="../js/g-analytics.js" th:src="@{/js/g-analytics.js}"></script>
+</head>
+
+<body>
+
+<h1>YConnect v2</h1>
+
+<h2>Procedure</h2>
+
+<ul>
+	<li><a href="./">Step 0: Redisplay this page to reset</a></li>
+	<li><a href="https://e.developer.yahoo.co.jp/dashboard/" target="_blank" rel="noopener noreferrer">Step 1: Y! DevNetwork Management Apps</a></li>
+	<li><form method="post" name="frmid" th:action="@{./}"><input type="hidden" name="mode" value="setid">Step 2: Set <label for="id_clientid">client id: </label><input type="text" name="clientid" id="id_clientid" th:value="${clientid}"> & <label for="id_secret">secret: </label> <input type="text" name="secret" id="id_secret" th:value="${secret}"><input type="submit"></form></li>
+	<li><a th:href="${authUrl}">Step 3: ユーザ認証リクエスト＆Access Token要求（発行）</a></li>
+	<li><th:block th:if="${access_token} != null"><a href="javascript: document.getElementById('mode').value='idtoken'; frmycon.submit();"></th:block>Step 4: ID Token検証<th:block th:if="${access_token} != null"></a></th:block></li>
+	<li><th:block th:if="${access_token} != null"><a href="javascript: document.getElementById('mode').value='userinfo'; frmycon.submit();"></th:block>Step 5: 属性取得API（UserInfoAPI）<th:block th:if="${access_token} != null"></a></th:block></li>
+</ul>
+
+<h2>Authorization & Access Token</h2>
+
+<table>
+	<tr><td>nonce</td><td th:text="${nonce}"></td></tr>
+	<tr><td>code</td><td th:text="${code}"></td></tr>
+	<tr><td>access_token</td><td th:text="${access_token}"></td></tr>
+	<tr><td>token_type</td><td th:text="${token_type}"></td></tr>
+	<tr><td>refresh_token</td><td th:text="${refresh_token}"></td></tr>
+	<tr><td>expires_in</td><td th:text="${expires_in}"></td></tr>
+	<tr><td>id_token</td><td th:text="${id_token}"></td></tr>
+</table>
+
+<h2>Verify ID Token</h2>
+
+<table>
+	<tr><td>Verify Step 6</td><td th:text="${verify6}"></td></tr>
+	<tr><td>Verify Step 7</td><td th:text="${verify7}"></td></tr>
+	<tr><td>Verify Step 8</td><td th:text="${verify8}"></td></tr>
+	<tr><td>Verify Step 9</td><td th:text="${verify9}"></td></tr>
+	<tr><td>Verify Step 10 (Step 11)</td><td th:text="${verify10}"></td></tr>
+	<tr><td>Verify Step 12</td><td th:text="${verify12}"></td></tr>
+	<tr><td>Verify Step 13</td><td th:text="${verify13}"></td></tr>
+	<tr><td>Verify Step 14</td><td th:text="${verify14}"></td></tr>
+</table>
+
+<ul>
+	<li>If Step 14 is false, re-request access token(id token).</li>
+</ul>
+
+<h2>UserInfo API</h2>
+
+<table>
+	<tr><td>sub</td><td th:text="${sub}"></td></tr>
+	<tr><td>name</td><td th:text="${name}"></td></tr>
+	<tr><td>given_name</td><td th:text="${given_name}"></td></tr>
+	<tr><td>family_name</td><td th:text="${family_name}"></td></tr>
+	<tr><td>gender</td><td th:text="${gender}"></td></tr>
+	<tr><td>zoneinfo</td><td th:text="${zoneinfo}"></td></tr>
+	<tr><td>locale</td><td th:text="${locale}"></td></tr>
+	<tr><td>birthdate</td><td th:text="${birthdate}"></td></tr>
+	<tr><td>nickname</td><td th:text="${nickname}"></td></tr>
+	<tr><td>picture</td><td th:text="${picture}"></td></tr>
+	<tr><td>email</td><td th:text="${email}"></td></tr>
+	<tr><td>email_verified</td><td th:text="${email_verified}"></td></tr>
+</table>
+
+<form method="post" name="frmycon" th:action="@{./}">
+	<input type="hidden" name="mode" id="mode" value="">
+	<input type="hidden" name="clientid" th:value="${clientid}">
+	<input type="hidden" name="secret" th:value="${secret}">
+	<input type="hidden" name="nonce" th:value="${nonce}">
+	<input type="hidden" name="code" th:value="${code}">
+	<input type="hidden" name="access_token" th:value="${access_token}">
+	<input type="hidden" name="token_type" th:value="${token_type}">
+	<input type="hidden" name="refresh_token" th:value="${refresh_token}">
+	<input type="hidden" name="expires_in" th:value="${expires_in}">
+	<input type="hidden" name="id_token" th:value="${id_token}">
+</form>
+
+</body>
+</html>
