@@ -1,10 +1,15 @@
 package com.herokuapp.kon104.webapp.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
-import java.util.HashMap;
-import java.util.Map;
+import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
+//	import java.util.HashMap;
+//	import java.util.Map;
 
 /**
  * YConnect UserInfo Service
@@ -13,14 +18,23 @@ import java.util.Map;
 public class YConnectUserInfoService
 {
 
+	@Autowired
+	private HttpRequestUtility hrUtil;
+
 	// {{{ public YConnectUserInfoResponse getAttribute(String url, String access_token)
 	public YConnectUserInfoResponse getAttribute(String url, String access_token)
 	{
-		url = url + "?access_token={access_token}";
-		Map<String, String> vars = new HashMap<String, String>();
-		vars.put("access_token", access_token);
+//		url = url + "?access_token={access_token}";
+//		Map<String, String> vars = new HashMap<String, String>();
+//		vars.put("access_token", access_token);
+//		RestTemplate restTemplate = new RestTemplate();
+//		YConnectUserInfoResponse resp = restTemplate.getForObject(url, YConnectUserInfoResponse.class, vars);
+
+		HttpEntity<String> hEntity = hrUtil.createHttpEntityWithBearerAuth(access_token);
 		RestTemplate restTemplate = new RestTemplate();
-		YConnectUserInfoResponse resp = restTemplate.getForObject(url, YConnectUserInfoResponse.class, vars);
+		ResponseEntity<YConnectUserInfoResponse> rEntity = restTemplate.exchange(url,
+			HttpMethod.GET, hEntity, YConnectUserInfoResponse.class);
+		YConnectUserInfoResponse resp  = rEntity.getBody();
 
 		return resp;
 	}

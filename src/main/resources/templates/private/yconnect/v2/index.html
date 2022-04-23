@@ -16,14 +16,15 @@
 
 <h2>Procedure</h2>
 
-<ul>
-	<li><a href="./">Step 0: Redisplay this page to reset</a></li>
-	<li><a href="https://e.developer.yahoo.co.jp/dashboard/" target="_blank" rel="noopener noreferrer">Step 1: Y! DevNetwork Management Apps</a></li>
-	<li><form method="post" name="frmid" th:action="@{./}"><input type="hidden" name="mode" value="setid">Step 2: Set <label for="id_clientid">client id: </label><input type="text" name="clientid" id="id_clientid" th:value="${clientid}"> & <label for="id_secret">secret: </label> <input type="text" name="secret" id="id_secret" th:value="${secret}"><input type="submit"></form></li>
-	<li><a th:href="${authUrl}">Step 3: ユーザ認証リクエスト＆Access Token要求（発行）</a></li>
-	<li><th:block th:if="${access_token} != null"><a href="javascript: document.getElementById('mode').value='idtoken'; frmycon.submit();"></th:block>Step 4: ID Token検証<th:block th:if="${access_token} != null"></a></th:block></li>
-	<li><th:block th:if="${access_token} != null"><a href="javascript: document.getElementById('mode').value='userinfo'; frmycon.submit();"></th:block>Step 5: 属性取得API（UserInfoAPI）<th:block th:if="${access_token} != null"></a></th:block></li>
-</ul>
+<ol>
+	<li><a href="./">Redisplay this page to reset</a></li>
+	<li><a href="https://e.developer.yahoo.co.jp/dashboard/" target="_blank" rel="noopener noreferrer">Y! DevNetwork Management Apps</a></li>
+	<li><form method="post" name="frmid" th:action="@{./}"><input type="hidden" name="mode" value="setid">Set <label for="id_clientid">client id: </label><input type="text" name="clientid" id="id_clientid" th:value="${clientid}"> & <label for="id_secret">secret: </label> <input type="text" name="secret" id="id_secret" th:value="${secret}"><input type="submit"></form></li>
+	<li><a th:href="${authUrl}">ユーザ認証リクエスト＆Access Token要求（発行）</a></li>
+	<li><th:block th:if="${access_token} != null"><a href="javascript: document.getElementById('mode').value='idtoken'; frmycon.submit();"></th:block>ID Token検証<th:block th:if="${access_token} != null"></a></th:block></li>
+	<li><th:block th:if="${access_token} != null"><a href="javascript: document.getElementById('mode').value='userinfo'; frmycon.submit();"></th:block>属性取得API（UserInfoAPI）<th:block th:if="${access_token} != null"></a></th:block></li>
+	<li><th:block th:if="${access_token} != null"><a href="javascript: document.getElementById('mode').value='retoken'; frmycon.submit();"></th:block>Access Token更新<th:block th:if="${access_token} != null"></a></th:block></li>
+</ol>
 
 <h2>Authorization & Access Token</h2>
 

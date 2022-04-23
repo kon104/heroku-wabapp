@@ -113,6 +113,16 @@ public class PrivateController
 			@RequestParam(name = "id_token", required = false) String id_token,
 			Model model)
 	{
+		model.addAttribute("clientid", clientId);
+		model.addAttribute("secret", clientSecret);
+		model.addAttribute("nonce", nonce);
+		model.addAttribute("code", code);
+		model.addAttribute("access_token", access_token);
+		model.addAttribute("token_type", token_type);
+		model.addAttribute("refresh_token", refresh_token);
+		model.addAttribute("expires_in", expires_in);
+		model.addAttribute("id_token", id_token);
+
 		YConnectOpenIdConfigResponse respOpenId = this.yconOpenIdConf.discovery();
 
 		if ("setid".equals(mode) == true) {
@@ -144,6 +154,12 @@ public class PrivateController
 			this.yconUserInfo.addModel(respUser, model);
 			YConnectTokenResponse respToken = new YConnectTokenResponse(access_token, token_type, refresh_token, expires_in, id_token);
 			this.yconToken.addModel(respToken, model);
+		} else
+		if ("retoken".equals(mode) == true) {
+			String url = respOpenId.token_endpoint;
+			YConnectTokenResponse respToken = this.yconToken.refresh(url, clientId, clientSecret, refresh_token);
+			this.yconToken.addModel(respToken, model);
+
 		} else
 		if (code != null) {
 			nonce = (String)session.getAttribute("nonce");
