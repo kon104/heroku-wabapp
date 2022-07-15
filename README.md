@@ -1,5 +1,5 @@
 # heroku-wabapp
-myself apps which execute in Heroku!
+myself apps which execute in Heroku! there are various kind of experimental apps.
 
 ## for development environment
 
