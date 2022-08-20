@@ -21,10 +21,10 @@ public class TradingViewController
 		Model model)
 	{
 		if (market == null) {
-			market = "NASDAQ";
+			market = "BINANCE";
 		}
 		if (code == null) {
-			code = "GOOGL";
+			code = "BTCUSDT";
 		}
 		model.addAttribute("market", market);
 		model.addAttribute("code", code);
