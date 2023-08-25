@@ -1,23 +1,30 @@
-package com.herokuapp.kon104.webapp.domain;
+package com.herokuapp.kon104.webapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import com.herokuapp.kon104.webapp.domain.SiteMapRecord;
 import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**
- * Site Map Service
+ * Site Map Service Implement Class
  */
 @Service
-public class SiteMapService
+public class SiteMapServiceImpl implements SiteMapService
 {
-	@Autowired
 	private HttpRequestUtility hrUtil;
 
+	// {{{ public SiteMapServiceImpl(HttpRequestUtility hrUtil)
+	public SiteMapServiceImpl(HttpRequestUtility hrUtil)
+	{
+		this.hrUtil = hrUtil;
+	}
+	// }}}
+
 	// {{{ public List<SiteMapRecord> getSiteMap(HttpServletRequest request)
+	@Override
 	public List<SiteMapRecord> getSiteMap(HttpServletRequest request)
 	{
 		String domain = hrUtil.getDomainURL(request);
