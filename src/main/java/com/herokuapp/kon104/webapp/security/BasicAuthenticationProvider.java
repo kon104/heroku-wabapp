@@ -2,8 +2,6 @@ package com.herokuapp.kon104.webapp.security;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -28,15 +26,9 @@ public class BasicAuthenticationProvider implements AuthenticationProvider {
 	@Value("${security.bauth.digit}")
 	private int digit = -1;
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-
 	// {{{ public Authentication authenticate(Authentication authentication) throws AuthenticationException
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		logger.info(">>> Hello!!!");
-		logger.info(">>> start: #" + new Object(){}.getClass().getEnclosingMethod().getName() + "()");
-		System.out.println(">>> BasicAuthenticationProvider#authenticate()");
-
 		String inputName = authentication.getName();
 		String inputPass = authentication.getCredentials().toString();
 		String hashName = this.convHash(inputName, this.algo, this.digit);
@@ -53,7 +45,6 @@ public class BasicAuthenticationProvider implements AuthenticationProvider {
 	// {{{ public boolean supports(Class<?> authentication)
 	@Override
 	public boolean supports(Class<?> authentication) {
-		System.out.println(">>> BasicAuthenticationProvider#supports()");
 		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
 	}
 	// }}}

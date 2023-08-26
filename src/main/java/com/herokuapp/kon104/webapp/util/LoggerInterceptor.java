@@ -16,18 +16,54 @@ public class LoggerInterceptor
 {
 	private final Map<String, Logger> pool = new HashMap<>();
 
-	// {{{ public void before(JoinPoint jp)
-	@Before("execution(* com.herokuapp.kon104.webapp.service.*.*(..))")
-	public void before(JoinPoint jp)
+	// {{{ public void beforeController(JoinPoint jp)
+	@Before("execution(* com.herokuapp.kon104.webapp.controller.*.*(..))")
+	public void beforeController(JoinPoint jp)
 	{
 		Logger logger = this.assignLogger(jp);
 		this.outputLabel(logger, jp, "START");
 	}
 	// }}}
 
-	// {{{ public void after(JoinPoint jp)
+	// {{{ public void beforeService(JoinPoint jp)
+	@Before("execution(* com.herokuapp.kon104.webapp.service.*.*(..))")
+	public void beforeService(JoinPoint jp)
+	{
+		Logger logger = this.assignLogger(jp);
+		this.outputLabel(logger, jp, "START");
+	}
+	// }}}
+
+	// {{{ public void beforeSecurity(JoinPoint jp)
+	@Before("execution(* com.herokuapp.kon104.webapp.security.*.*(..))")
+	public void beforeSecurity(JoinPoint jp)
+	{
+		Logger logger = this.assignLogger(jp);
+		this.outputLabel(logger, jp, "START");
+	}
+	// }}}
+
+	// {{{ public void afterController(JoinPoint jp)
+	@After("execution(* com.herokuapp.kon104.webapp.controller.*.*(..))")
+	public void afterController(JoinPoint jp)
+	{
+		Logger logger = this.assignLogger(jp);
+		this.outputLabel(logger, jp, "END  ");
+	}
+	// }}}
+
+	// {{{ public void afterService(JoinPoint jp)
 	@After("execution(* com.herokuapp.kon104.webapp.service.*.*(..))")
-	public void after(JoinPoint jp)
+	public void afterService(JoinPoint jp)
+	{
+		Logger logger = this.assignLogger(jp);
+		this.outputLabel(logger, jp, "END  ");
+	}
+	// }}}
+
+	// {{{ public void afterSecurity(JoinPoint jp)
+	@After("execution(* com.herokuapp.kon104.webapp.security.*.*(..))")
+	public void afterSecurity(JoinPoint jp)
 	{
 		Logger logger = this.assignLogger(jp);
 		this.outputLabel(logger, jp, "END  ");

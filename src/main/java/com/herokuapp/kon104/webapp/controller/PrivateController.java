@@ -1,6 +1,5 @@
 package com.herokuapp.kon104.webapp.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +17,16 @@ import com.herokuapp.kon104.webapp.service.StockMoveAvgService;
 public class PrivateController
 {
 
-	@Autowired
 	private StockMoveAvgService moveavg;
+
+	// {{{ public PrivateController(StockMoveAvgService moveavg)
+	public PrivateController(StockMoveAvgService moveavg)
+	{
+		this.moveavg = moveavg;
+	}
+	// }}}
+
+	// top page
 
 	// {{{ public String index()
 	@GetMapping("/")

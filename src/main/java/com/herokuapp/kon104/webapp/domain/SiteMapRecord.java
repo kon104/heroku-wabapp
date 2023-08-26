@@ -8,12 +8,12 @@ import lombok.Setter;
 @Setter
 public class SiteMapRecord
 {
-	public static final String FREQ_YEARLY = "yearly";
-
 	private String loc;
 	private Date lastmod;
 	private String changefreq;
 	private double priority;
+
+	public static final String FREQ_YEARLY = "yearly";
 
 	// {{{ public SiteMapRecord(String loc, Date lastmod, String changefreq, double priority)
 	public SiteMapRecord(String loc, Date lastmod, String changefreq, double priority)
