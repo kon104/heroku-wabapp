@@ -1,12 +1,17 @@
 package com.herokuapp.kon104.webapp.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class YConnectTokenResponse
 {
-	public String access_token;
-	public String token_type;
-	public String refresh_token;
-	public String expires_in;
-	public String id_token;
+	private String access_token;
+	private String token_type;
+	private String refresh_token;
+	private String expires_in;
+	private  String id_token;
 
 	// {{{ public YConnectTokenResponse()
 	public YConnectTokenResponse()

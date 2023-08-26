@@ -20,9 +20,9 @@
 	<li><a href="./">Step 0: Redisplay this page to reset</a></li>
 	<li><a href="https://e.developer.yahoo.co.jp/dashboard/" target="_blank" rel="noopener noreferrer">Step 1: Y! DevNetwork Management Apps</a></li>
 	<li><form method="post" name="frmid" th:action="@{./}"><input type="hidden" name="mode" value="setid">Step 2: Set <label for="id_clientid">client id: </label><input type="text" name="clientid" id="id_clientid" th:value="${clientid}"> & <label for="id_secret">secret: </label> <input type="text" name="secret" id="id_secret" th:value="${secret}"><input type="submit"></form></li>
-	<li><a th:href="${authUrl}">Step 3: ユーザ認証リクエスト＆Access Token要求（発行）</a></li>
-	<li><th:block th:if="${access_token} != null"><a href="javascript: document.getElementById('mode').value='idtoken'; frmycon.submit();"></th:block>Step 4: ID Token検証<th:block th:if="${access_token} != null"></a></th:block></li>
-	<li><th:block th:if="${access_token} != null"><a href="javascript: document.getElementById('mode').value='userinfo'; frmycon.submit();"></th:block>Step 5: 属性取得API（UserInfoAPI）<th:block th:if="${access_token} != null"></a></th:block></li>
+	<li><th:block th:if="${clientid} != null"><a th:href="${authUrl}"></th:block>Step 3: ユーザ認証リクエスト＆Access Token要求（発行）<th:block th:if="${clientid} != null"></a></th:block></li>
+	<li><th:block th:if="${yctoken} != null"><a href="javascript: document.getElementById('mode').value='idtoken'; frmycon.submit();"></th:block>Step 4: ID Token検証<th:block th:if="${yctoken} != null"></a></th:block></li>
+	<li><th:block th:if="${yctoken} != null"><a href="javascript: document.getElementById('mode').value='userinfo'; frmycon.submit();"></th:block>Step 5: 属性取得API（UserInfoAPI）<th:block th:if="${yctoken} != null"></a></th:block></li>
 </ul>
 
 <h2>Authorization & Access Token</h2>
@@ -30,11 +30,11 @@
 <table>
 	<tr><td>nonce</td><td th:text="${nonce}"></td></tr>
 	<tr><td>code</td><td th:text="${code}"></td></tr>
-	<tr><td>access_token</td><td th:text="${access_token}"></td></tr>
-	<tr><td>token_type</td><td th:text="${token_type}"></td></tr>
-	<tr><td>refresh_token</td><td th:text="${refresh_token}"></td></tr>
-	<tr><td>expires_in</td><td th:text="${expires_in}"></td></tr>
-	<tr><td>id_token</td><td th:text="${id_token}"></td></tr>
+	<tr><td>access_token</td><td><span th:if="${yctoken}" th:text="${yctoken.access_token}"></span></td></tr>
+	<tr><td>token_type</td><td><span th:if="${yctoken}" th:text="${yctoken.token_type}"></span></td></tr>
+	<tr><td>refresh_token</td><td><span th:if="${yctoken}" th:text="${yctoken.refresh_token}"></span></td></tr>
+	<tr><td>expires_in</td><td><span th:if="${yctoken}" th:text="${yctoken.expires_in}"></span></td></tr>
+	<tr><td>id_token</td><td><span th:if="${yctoken}" th:text="${yctoken.id_token}"></span></td></tr>
 </table>
 
 <h2>Verify ID Token</h2>
@@ -57,18 +57,18 @@
 <h2>UserInfo API</h2>
 
 <table>
-	<tr><td>sub</td><td th:text="${sub}"></td></tr>
-	<tr><td>name</td><td th:text="${name}"></td></tr>
-	<tr><td>given_name</td><td th:text="${given_name}"></td></tr>
-	<tr><td>family_name</td><td th:text="${family_name}"></td></tr>
-	<tr><td>gender</td><td th:text="${gender}"></td></tr>
-	<tr><td>zoneinfo</td><td th:text="${zoneinfo}"></td></tr>
-	<tr><td>locale</td><td th:text="${locale}"></td></tr>
-	<tr><td>birthdate</td><td th:text="${birthdate}"></td></tr>
-	<tr><td>nickname</td><td th:text="${nickname}"></td></tr>
-	<tr><td>picture</td><td th:text="${picture}"></td></tr>
-	<tr><td>email</td><td th:text="${email}"></td></tr>
-	<tr><td>email_verified</td><td th:text="${email_verified}"></td></tr>
+	<tr><td>sub</td><td><span th:if="${ycuser}" th:text="${ycuser.sub}"></span></td></tr>
+	<tr><td>name</td><td><span th:if="${ycuser}" th:text="${ycuser.name}"></span></td></tr>
+	<tr><td>given_name</td><td><span th:if="${ycuser}" th:text="${ycuser.given_name}"></span></td></tr>
+	<tr><td>family_name</td><td><span th:if="${ycuser}" th:text="${ycuser.family_name}"></span></td></tr>
+	<tr><td>gender</td><td><span th:if="${ycuser}" th:text="${ycuser.gender}"></span></td></tr>
+	<tr><td>zoneinfo</td><td><span th:if="${ycuser}" th:text="${ycuser.zoneinfo}"></span></td></tr>
+	<tr><td>locale</td><td><span th:if="${ycuser}" th:text="${ycuser.locale}"></span></td></tr>
+	<tr><td>birthdate</td><td><span th:if="${ycuser}" th:text="${ycuser.birthdate}"></span></td></tr>
+	<tr><td>nickname</td><td><span th:if="${ycuser}" th:text="${ycuser.nickname}"></span></td></tr>
+	<tr><td>picture</td><td><span th:if="${ycuser}" th:text="${ycuser.picture}"></span></td></tr>
+	<tr><td>email</td><td><span th:if="${ycuser}" th:text="${ycuser.email}"></span></td></tr>
+	<tr><td>email_verified</td><td><span th:if="${ycuser}" th:text="${ycuser.email_verified}"></span></td></tr>
 </table>
 
 <form method="post" name="frmycon" th:action="@{./}">
@@ -77,11 +77,11 @@
 	<input type="hidden" name="secret" th:value="${secret}">
 	<input type="hidden" name="nonce" th:value="${nonce}">
 	<input type="hidden" name="code" th:value="${code}">
-	<input type="hidden" name="access_token" th:value="${access_token}">
-	<input type="hidden" name="token_type" th:value="${token_type}">
-	<input type="hidden" name="refresh_token" th:value="${refresh_token}">
-	<input type="hidden" name="expires_in" th:value="${expires_in}">
-	<input type="hidden" name="id_token" th:value="${id_token}">
+	<input type="hidden" name="access_token" th:if="${yctoken}" th:value="${yctoken.access_token}">
+	<input type="hidden" name="token_type" th:if="${yctoken}" th:value="${yctoken.token_type}">
+	<input type="hidden" name="refresh_token" th:if="${yctoken}" th:value="${yctoken.refresh_token}">
+	<input type="hidden" name="expires_in" th:if="${yctoken}" th:value="${yctoken.expires_in}">
+	<input type="hidden" name="id_token" th:if="${yctoken}" th:value="${yctoken.id_token}">
 </form>
 
 </body>

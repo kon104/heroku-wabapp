@@ -28,23 +28,4 @@ public class YConnectUserInfoServiceImpl implements YConnectUserInfoService
 	}
 	// }}}
 
-	// {{{ public void addModel(YConnectUserInfoResponse resp, Model model)
-	@Override
-	public void addModel(YConnectUserInfoResponse resp, Model model)
-	{
-		model.addAttribute("sub", resp.sub);
-		model.addAttribute("name", resp.name);
-		model.addAttribute("given_name", resp.given_name);
-		model.addAttribute("family_name", resp.family_name);
-		model.addAttribute("gender", resp.gender);
-		model.addAttribute("zoneinfo", resp.zoneinfo);
-		model.addAttribute("locale", resp.locale);
-		model.addAttribute("birthdate", resp.birthdate);
-		model.addAttribute("nickname", resp.nickname);
-		model.addAttribute("picture", resp.picture);
-		model.addAttribute("email", resp.email);
-		model.addAttribute("email_verified", resp.email_verified);
-	}
-	// }}}
-
 }

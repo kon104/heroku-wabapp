@@ -2,7 +2,6 @@ package com.herokuapp.kon104.webapp.service;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -40,18 +39,6 @@ public class YConnectTokenServiceImpl implements YConnectTokenService
 		YConnectTokenResponse resp = restTemplate.postForObject(url, param, YConnectTokenResponse.class);
 
 		return resp;
-	}
-	// }}}
-
-    // {{{ public void addModel(YConnectTokenResponse resp, Model model)
-	@Override
-    public void addModel(YConnectTokenResponse resp, Model model)
-	{
-		model.addAttribute("access_token", resp.access_token);
-		model.addAttribute("token_type", resp.token_type);
-		model.addAttribute("refresh_token", resp.refresh_token);
-		model.addAttribute("expires_in", resp.expires_in);
-		model.addAttribute("id_token", resp.id_token);
 	}
 	// }}}
 

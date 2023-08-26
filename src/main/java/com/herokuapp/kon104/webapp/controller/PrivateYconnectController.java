@@ -76,7 +76,7 @@ public class PrivateYconnectController
 		if ("idtoken".equals(mode) == true) {
 			model.addAttribute("code", code);
 			YConnectTokenResponse respToken = new YConnectTokenResponse(access_token, token_type, refresh_token, expires_in, id_token);
-			this.yconToken.addModel(respToken, model);
+			model.addAttribute("yctoken", respToken);
 			String issuer = respOpenId.getIssuer();
 			Map<String, Boolean> result = this.yconIdToken.verify(id_token, issuer, clientId, nonce, access_token, this.max_age);
 			model.addAttribute("verify6", result.get("verify6"));
@@ -93,9 +93,9 @@ public class PrivateYconnectController
 			model.addAttribute("code", code);
 			String url = respOpenId.getUserinfo_endpoint();
 			YConnectUserInfoResponse respUser = this.yconUserInfo.getAttribute(url, access_token);
-			this.yconUserInfo.addModel(respUser, model);
+			model.addAttribute("ycuser", respUser);
 			YConnectTokenResponse respToken = new YConnectTokenResponse(access_token, token_type, refresh_token, expires_in, id_token);
-			this.yconToken.addModel(respToken, model);
+			model.addAttribute("yctoken", respToken);
 		} else
 		if (code != null) {
 			nonce = (String)this.session.getAttribute("nonce");
@@ -104,7 +104,7 @@ public class PrivateYconnectController
 			model.addAttribute("code", code);
 			String url = respOpenId.getToken_endpoint();
 			YConnectTokenResponse respToken = this.yconToken.generate(url, clientId, clientSecret, code, request);
-			this.yconToken.addModel(respToken, model);
+			model.addAttribute("yctoken", respToken);
 		}
 
 		String authUrl = this.yconOpenIdConf.makeAuthUrl(respOpenId, request, clientId, nonce, this.max_age);
