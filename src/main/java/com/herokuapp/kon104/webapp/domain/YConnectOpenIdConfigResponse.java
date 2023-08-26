@@ -1,12 +1,17 @@
 package com.herokuapp.kon104.webapp.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class YConnectOpenIdConfigResponse
 {
-	public String issuer;
-	public String authorization_endpoint;
-	public String token_endpoint;
-	public String userinfo_endpoint;
-	public String jwks_uri;
+	private String issuer;
+	private String authorization_endpoint;
+	private String token_endpoint;
+	private String userinfo_endpoint;
+	private String jwks_uri;
 
 	// {{{ public YConnectOpenIdConfigResponse()
 	public YConnectOpenIdConfigResponse()

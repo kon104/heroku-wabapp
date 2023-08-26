@@ -62,7 +62,7 @@ public class YConnectOpenIdConfigServiceImpl implements YConnectOpenIdConfigServ
 		} catch(Exception e) {
 		}
 		
-		String url = resp.authorization_endpoint
+		String url = resp.getAuthorization_endpoint()
 			+ "?response_type=code"
 			+ "&client_id=" + clientId
 			+ "&redirect_uri=" + redirect
