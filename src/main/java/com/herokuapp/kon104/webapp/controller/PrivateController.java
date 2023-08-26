@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Collections;
 import java.util.List;
 import com.herokuapp.kon104.webapp.domain.SentenceJpn2EngRecord;
-import com.herokuapp.kon104.webapp.domain.StockMoveAvgService;
 import com.herokuapp.kon104.webapp.domain.StudyEnglishService;
+import com.herokuapp.kon104.webapp.service.StockMoveAvgService;
 
 /**
  * Private Apps Area
