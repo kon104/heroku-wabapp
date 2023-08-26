@@ -14,11 +14,13 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 @Service
 public class YConnectTokenServiceImpl implements YConnectTokenService
 {
+	private RestTemplate restTemplate;
 	private HttpRequestUtility hrUtil;
 
-	// {{{ public YConnectTokenServiceImpl(HttpRequestUtility hrUtil)
-	public YConnectTokenServiceImpl(HttpRequestUtility hrUtil)
+	// {{{ public YConnectTokenServiceImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
+	public YConnectTokenServiceImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
 	{
+		this.restTemplate = restTemplate;
 		this.hrUtil = hrUtil;
 	}
 	// }}}
@@ -35,8 +37,7 @@ public class YConnectTokenServiceImpl implements YConnectTokenService
 		param.add("client_secret", clientSecret);
 		param.add("code", code);
 		param.add("redirect_uri", redirect);
-		RestTemplate restTemplate = new RestTemplate();
-		YConnectTokenResponse resp = restTemplate.postForObject(url, param, YConnectTokenResponse.class);
+		YConnectTokenResponse resp = this.restTemplate.postForObject(url, param, YConnectTokenResponse.class);
 
 		return resp;
 	}

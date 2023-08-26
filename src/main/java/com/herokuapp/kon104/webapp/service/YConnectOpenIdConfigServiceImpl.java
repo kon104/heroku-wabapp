@@ -15,11 +15,13 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 @Service
 public class YConnectOpenIdConfigServiceImpl implements YConnectOpenIdConfigService
 {
+	private RestTemplate restTemplate;
 	private HttpRequestUtility hrUtil;
 
-	// {{{ public YConnectOpenIdConfigServiceImpl(HttpRequestUtility hrUtil)
-	public YConnectOpenIdConfigServiceImpl(HttpRequestUtility hrUtil)
+	// {{{ public YConnectOpenIdConfigServiceImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
+	public YConnectOpenIdConfigServiceImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
 	{
+		this.restTemplate = restTemplate;
 		this.hrUtil = hrUtil;
 	}
 	// }}}
@@ -28,8 +30,7 @@ public class YConnectOpenIdConfigServiceImpl implements YConnectOpenIdConfigServ
 	@Override
 	public YConnectOpenIdConfigResponse discovery()
 	{
-		RestTemplate restTemplate = new RestTemplate();
-		YConnectOpenIdConfigResponse resp = restTemplate.getForObject(URL, YConnectOpenIdConfigResponse.class);
+		YConnectOpenIdConfigResponse resp = this.restTemplate.getForObject(URL, YConnectOpenIdConfigResponse.class);
 		return resp;
 	}
 	// }}}
@@ -58,7 +59,7 @@ public class YConnectOpenIdConfigServiceImpl implements YConnectOpenIdConfigServ
 	{
 		String redirect = null;
 		try {
-			redirect = URLEncoder.encode(hrUtil.getURL(request), "utf-8");
+			redirect = URLEncoder.encode(this.hrUtil.getURL(request), "utf-8");
 		} catch(Exception e) {
 		}
 		

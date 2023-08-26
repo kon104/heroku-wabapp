@@ -26,6 +26,15 @@ import java.util.stream.StreamSupport;
 public class YConnectIdTokenServiceImpl implements YConnectIdTokenService
 {
 
+	private RestTemplate restTemplate;
+
+	// {{{ public YConnectIdTokenServiceImpl(RestTemplate restTemplate)
+	public YConnectIdTokenServiceImpl(RestTemplate restTemplate)
+	{
+		this.restTemplate = restTemplate;
+	}
+	// }}}
+
 	// {{{ public Map<String, Boolean> verify(String idtoken, String issuer, String clientId, String nonce, String access_token, int max_age)
 	@Override
 	public Map<String, Boolean> verify(String idtoken, String issuer, String clientId, String nonce, String access_token, int max_age)
@@ -150,8 +159,7 @@ System.out.println(payload);
 	// {{{ private RSAPublicKey collectPublicKey(String kid)
 	private RSAPublicKey collectPublicKey(String kid)
 	{
-		RestTemplate restTemplate = new RestTemplate();
-		String resp = restTemplate.getForObject(this.URL_PUBLIC_KEYS, String.class);
+		String resp = this.restTemplate.getForObject(this.URL_PUBLIC_KEYS, String.class);
 		JsonNode json = this.convStr2Json(resp);
 
 		String publicKeyPEM = json.get(kid).textValue();

@@ -13,6 +13,14 @@ import com.herokuapp.kon104.webapp.domain.YConnectUserInfoResponse;
 @Service
 public class YConnectUserInfoServiceImpl implements YConnectUserInfoService
 {
+	private RestTemplate restTemplate;
+
+	// {{{ public YConnectUserInfoServiceImpl(RestTemplate restTemplate)
+	public YConnectUserInfoServiceImpl(RestTemplate restTemplate)
+	{
+		this.restTemplate = restTemplate;
+	}
+	// }}}
 
 	// {{{ public YConnectUserInfoResponse getAttribute(String url, String access_token)
 	@Override
@@ -21,8 +29,7 @@ public class YConnectUserInfoServiceImpl implements YConnectUserInfoService
 		url = url + "?access_token={access_token}";
 		Map<String, String> vars = new HashMap<String, String>();
 		vars.put("access_token", access_token);
-		RestTemplate restTemplate = new RestTemplate();
-		YConnectUserInfoResponse resp = restTemplate.getForObject(url, YConnectUserInfoResponse.class, vars);
+		YConnectUserInfoResponse resp = this.restTemplate.getForObject(url, YConnectUserInfoResponse.class, vars);
 
 		return resp;
 	}
