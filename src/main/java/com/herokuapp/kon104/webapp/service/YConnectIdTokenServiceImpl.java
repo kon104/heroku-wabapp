@@ -1,6 +1,5 @@
-package com.herokuapp.kon104.webapp.domain;
+package com.herokuapp.kon104.webapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -19,19 +18,16 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**
  * YConnect IdToken Service
  */
 @Service
-public class YConnectIdTokenService
+public class YConnectIdTokenServiceImpl implements YConnectIdTokenService
 {
-	@Autowired
-	private HttpRequestUtility hrUtil;
 
-	public static final String urlPublicKeys = "https://auth.login.yahoo.co.jp/yconnect/v2/public-keys";
-
+	// {{{ public Map<String, Boolean> verify(String idtoken, String issuer, String clientId, String nonce, String access_token, int max_age)
+	@Override
 	public Map<String, Boolean> verify(String idtoken, String issuer, String clientId, String nonce, String access_token, int max_age)
 	{
         Map<String, Boolean> results = new HashMap<>();
@@ -86,6 +82,7 @@ System.out.println(payload);
 
 		return results;
 	}
+	// }}}
 
 	// {{{ private Map<String, String> divideIdToken(String idtoken)
 	private Map<String, String> divideIdToken(String idtoken)
@@ -154,7 +151,7 @@ System.out.println(payload);
 	private RSAPublicKey collectPublicKey(String kid)
 	{
 		RestTemplate restTemplate = new RestTemplate();
-		String resp = restTemplate.getForObject(this.urlPublicKeys, String.class);
+		String resp = restTemplate.getForObject(this.URL_PUBLIC_KEYS, String.class);
 		JsonNode json = this.convStr2Json(resp);
 
 		String publicKeyPEM = json.get(kid).textValue();

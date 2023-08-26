@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import com.herokuapp.kon104.webapp.domain.YConnectIdTokenService;
 import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
 import com.herokuapp.kon104.webapp.domain.YConnectTokenResponse;
-import com.herokuapp.kon104.webapp.domain.YConnectTokenService;
 import com.herokuapp.kon104.webapp.domain.YConnectUserInfoResponse;
-import com.herokuapp.kon104.webapp.domain.YConnectUserInfoService;
+import com.herokuapp.kon104.webapp.service.YConnectIdTokenService;
 import com.herokuapp.kon104.webapp.service.YConnectOpenIdConfigService;
+import com.herokuapp.kon104.webapp.service.YConnectTokenService;
+import com.herokuapp.kon104.webapp.service.YConnectUserInfoService;
 
 /**
  *
