@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Collections;
 import java.util.List;
-import com.herokuapp.kon104.webapp.domain.SentenceJpn2EngRecord;
-import com.herokuapp.kon104.webapp.domain.StudyEnglishService;
 import com.herokuapp.kon104.webapp.service.StockMoveAvgService;
 
 /**
@@ -22,9 +20,6 @@ public class PrivateController
 
 	@Autowired
 	private StockMoveAvgService moveavg;
-
-	@Autowired
-	private StudyEnglishService studyeng;
 
 	// {{{ public String index()
 	@GetMapping("/")
@@ -42,27 +37,6 @@ public class PrivateController
 	{
 		model.addAttribute("moveavgs", this.moveavg.getMoveAvg());
 		return "private/stock/moveavg/index";
-	}
-	// }}}
-
-	// Section of Studying
-
-	// {{{ public String studyEnglish()
-	@GetMapping("/study/english/")
-	public String studyEnglish()
-	{
-		return "private/study/english/index";
-	}
-	// }}}
-
-	// {{{ public String studyWordbook(Model model)
-	@GetMapping("/study/wordbook/")
-	public String studyWordbook(Model model)
-	{
-		List<SentenceJpn2EngRecord> list = this.studyeng.getList();
-		Collections.shuffle(list);
-		model.addAttribute("studyengs", list);
-		return "private/study/wordbook/index";
 	}
 	// }}}
 
