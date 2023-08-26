@@ -1,16 +1,21 @@
 package com.herokuapp.kon104.webapp.domain;
 
 import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class SiteMapRecord
 {
 	public static final String FREQ_YEARLY = "yearly";
 
-	public String loc;
-	public Date lastmod;
-	public String changefreq;
-	public double priority;
+	private String loc;
+	private Date lastmod;
+	private String changefreq;
+	private double priority;
 
+	// {{{ public SiteMapRecord(String loc, Date lastmod, String changefreq, double priority)
 	public SiteMapRecord(String loc, Date lastmod, String changefreq, double priority)
 	{
 		this.loc = loc;
@@ -18,4 +23,6 @@ public class SiteMapRecord
 		this.changefreq = changefreq;
 		this.priority = priority;
 	}
+	// }}}
+
 }
