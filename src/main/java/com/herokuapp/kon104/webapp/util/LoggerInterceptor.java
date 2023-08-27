@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.CodeSignature;
@@ -53,14 +55,21 @@ public class LoggerInterceptor
 	}
 	// }}}
 
-	// {{{ public void afterService(JoinPoint jp)
-	@After("execution(* com.herokuapp.kon104.webapp.service.*.*(..))")
-	public void afterService(JoinPoint jp)
+	// {{{ public void afterReturningService(JoinPoint jp, Object retval)
+	@AfterReturning(value = "execution(* com.herokuapp.kon104.webapp.service.*.*(..))", returning = "retval")
+	public void afterReturningService(JoinPoint jp, Object retval)
 	{
 		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, false);
+		this.outputLabel(logger, jp, false, retval);
 	}
 	// }}}
+
+	@AfterThrowing(value = "execution(* com.herokuapp.kon104.webapp.service.*.*(..))", throwing = "e")
+	public void afterThrowingService(JoinPoint jp, RuntimeException e)
+	{
+		Logger logger = this.assignLogger(jp);
+		// TODO: write some codes.
+	}
 
 	// {{{ public void afterSecurity(JoinPoint jp)
 	@After("execution(* com.herokuapp.kon104.webapp.security.*.*(..))")
@@ -91,6 +100,13 @@ public class LoggerInterceptor
 	// {{{ private void outputLabel(Logger logger, JoinPoint jp, boolean startflg)
 	private void outputLabel(Logger logger, JoinPoint jp, boolean startflg)
 	{
+		this.outputLabel(logger, jp, startflg, null);
+	}
+	// }}}
+
+	// {{{ private void outputLabel(Logger logger, JoinPoint jp, boolean startflg, Object retval)
+	private void outputLabel(Logger logger, JoinPoint jp, boolean startflg, Object retval)
+	{
 		String label = "START";
 		if (! startflg) {
 			label = "END  ";
@@ -98,22 +114,28 @@ public class LoggerInterceptor
 
 		String pathClassMethod = jp.getSignature().toString();
 
-		String param = "";
+		String infoVal = null;
 		if (startflg) {
 			String[] argsKeys = ((CodeSignature) jp.getSignature()).getParameterNames();
 			Object[] argsVals = jp.getArgs();
 			for (int i = 0; i < argsKeys.length; i++) {
-				if (! param.equals("")) {
-					param += ", ";
+				if (infoVal == null) {
+					infoVal = "Parameter : ";
+				} else {
+					infoVal += ", ";
 				}
-				param += argsKeys[i] + "=" + String.valueOf(argsVals[i]);
+				infoVal += argsKeys[i] + "=" + String.valueOf(argsVals[i]);
+			}
+		} else {
+			if (retval != null) {
+				infoVal = "Returning : " + String.valueOf(retval);
 			}
 		}
 
-		if (param.equals("")) {
+		if (infoVal == null) {
 			logger.info("{} >> {}", label, pathClassMethod);
 		} else {
-			logger.info("{} >> {} : {}", label, pathClassMethod, param);
+			logger.info("{} >> {} >> {}", label, pathClassMethod, infoVal);
 		}
 	}
 	// }}}
