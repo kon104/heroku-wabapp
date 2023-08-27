@@ -1,6 +1,5 @@
-package com.herokuapp.kon104.webapp.domain;
+package com.herokuapp.kon104.webapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -19,19 +18,25 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**
  * YConnect IdToken Service
  */
 @Service
-public class YConnectIdTokenService
+public class YConnectIdTokenServiceImpl implements YConnectIdTokenService
 {
-	@Autowired
-	private HttpRequestUtility hrUtil;
 
-	public static final String urlPublicKeys = "https://auth.login.yahoo.co.jp/yconnect/v2/public-keys";
+	private RestTemplate restTemplate;
 
+	// {{{ public YConnectIdTokenServiceImpl(RestTemplate restTemplate)
+	public YConnectIdTokenServiceImpl(RestTemplate restTemplate)
+	{
+		this.restTemplate = restTemplate;
+	}
+	// }}}
+
+	// {{{ public Map<String, Boolean> verify(String idtoken, String issuer, String clientId, String nonce, String access_token, int max_age)
+	@Override
 	public Map<String, Boolean> verify(String idtoken, String issuer, String clientId, String nonce, String access_token, int max_age)
 	{
         Map<String, Boolean> results = new HashMap<>();
@@ -76,16 +81,9 @@ public class YConnectIdTokenService
 		result = this.checkYidLoginWithinMaxAge(unixTime, jsonPayload.get("auth_time").intValue(), max_age);
 		results.put("verify14", result);
 
-
-System.out.println(result);
-System.out.println(algorithm);
-System.out.println(idtokens.get("header"));
-System.out.println(idtokens.get("moge"));
-System.out.println(header);
-System.out.println(payload);
-
 		return results;
 	}
+	// }}}
 
 	// {{{ private Map<String, String> divideIdToken(String idtoken)
 	private Map<String, String> divideIdToken(String idtoken)
@@ -153,8 +151,7 @@ System.out.println(payload);
 	// {{{ private RSAPublicKey collectPublicKey(String kid)
 	private RSAPublicKey collectPublicKey(String kid)
 	{
-		RestTemplate restTemplate = new RestTemplate();
-		String resp = restTemplate.getForObject(this.urlPublicKeys, String.class);
+		String resp = this.restTemplate.getForObject(this.URL_PUBLIC_KEYS, String.class);
 		JsonNode json = this.convStr2Json(resp);
 
 		String publicKeyPEM = json.get(kid).textValue();
@@ -223,7 +220,6 @@ System.out.println(payload);
 				.collect(Collectors.toList());
 
 		for(String line : lists){
-			System.out.println(">>>[" + line + "]");
 			result = clientId.equals(line);
 			if (result == true) {
 				break;

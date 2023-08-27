@@ -1,15 +1,14 @@
 package com.herokuapp.kon104.webapp.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
-import com.herokuapp.kon104.webapp.domain.PortalService;
-import com.herokuapp.kon104.webapp.domain.RobotsService;
-import com.herokuapp.kon104.webapp.domain.SiteMapService;
+import com.herokuapp.kon104.webapp.service.PortalService;
+import com.herokuapp.kon104.webapp.service.RobotsService;
+import com.herokuapp.kon104.webapp.service.SiteMapService;
 
 /**
  * Portal Controller
@@ -17,14 +16,18 @@ import com.herokuapp.kon104.webapp.domain.SiteMapService;
 @Controller
 public class PortalController
 {
-	@Autowired
 	private PortalService portal;
-
-	@Autowired
 	private SiteMapService sitemap;
-
-	@Autowired
 	private RobotsService robots;
+
+	// {{{ public PortalController(PortalService portal, SiteMapService sitemap, RobotsService robots)
+	public PortalController(PortalService portal, SiteMapService sitemap, RobotsService robots)
+	{
+		this.portal = portal;
+		this.sitemap = sitemap;
+		this.robots = robots;
+	}
+	// }}}
 
 	// {{{ public String index(HttpServletRequest request, Model model)
 	@RequestMapping("/")

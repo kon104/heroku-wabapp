@@ -1,21 +1,29 @@
-package com.herokuapp.kon104.webapp.domain;
+package com.herokuapp.kon104.webapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import com.herokuapp.kon104.webapp.domain.StockMoveAvgProperties;
+import com.herokuapp.kon104.webapp.domain.StockMoveAvgRecord;
 
 /**
- * Stock Move Avg Service
+ * Stock Move Avg Service Implement Class
  */
 @Service
-public class StockMoveAvgService
+public class StockMoveAvgServiceImpl implements StockMoveAvgService
 {
 
-	@Autowired
 	private StockMoveAvgProperties properties;
 
+	// {{{ public StockMoveAvgServiceImpl(StockMoveAvgProperties properties)
+	public StockMoveAvgServiceImpl(StockMoveAvgProperties properties)
+	{
+		this.properties = properties;
+	}
+	// }}}
+
 	// {{{ public List<StockMoveAvgRecord> getMoveAvg()
+	@Override
 	public List<StockMoveAvgRecord> getMoveAvg()
 	{
 		List<StockMoveAvgRecord> moveavgs = this.buildMoveAvg();

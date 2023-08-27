@@ -1,23 +1,30 @@
 package com.herokuapp.kon104.webapp.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class YConnectUserInfoResponse
 {
-	public String sub;
-	public String name;
-	public String given_name;
-	public String family_name;
-	public String gender;
-	public String zoneinfo;
-	public String locale;
-	public String birthdate;
-	public String nickname;
-	public String picture;
-	public String email;
-	public String email_verified;
+	private String sub;
+	private String name;
+	private String given_name;
+	private String family_name;
+	private String gender;
+	private String zoneinfo;
+	private String locale;
+	private String birthdate;
+	private String nickname;
+	private String picture;
+	private String email;
+	private String email_verified;
 
+	// {{{ public YConnectUserInfoResponse()
 	public YConnectUserInfoResponse()
 	{
 	}
+	// }}}
 
 	// {{{ public String toString()
 	@Override

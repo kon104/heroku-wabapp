@@ -1,21 +1,27 @@
-package com.herokuapp.kon104.webapp.domain;
+package com.herokuapp.kon104.webapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**
- * Portal Service
+ * Portal Service Implement Class
  */
 @Service
-public class PortalService
+public class PortalServiceImpl implements PortalService
 {
-	@Autowired
 	private HttpRequestUtility hrUtil;
 
+	// {{{ public PortalServiceImpl(HttpRequestUtility hrUtil)
+	public PortalServiceImpl(HttpRequestUtility hrUtil)
+	{
+		this.hrUtil = hrUtil;
+	}
+	// }}}
+
 	// {{{ public String getDomain(HttpServletRequest request)
+	@Override
 	public String getDomain(HttpServletRequest request)
 	{
 		String domain = hrUtil.getDomain(request);
@@ -24,6 +30,7 @@ public class PortalService
 	// }}}
 
 	// {{{ public String getCopyrightYear()
+	@Override
 	public String getCopyrightYear()
 	{
 		final int START_YEAR = 2020;

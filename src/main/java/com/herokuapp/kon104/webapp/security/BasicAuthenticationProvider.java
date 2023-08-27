@@ -29,8 +29,6 @@ public class BasicAuthenticationProvider implements AuthenticationProvider {
 	// {{{ public Authentication authenticate(Authentication authentication) throws AuthenticationException
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		System.out.println(">>> BasicAuthenticationProvider#authenticate()");
-
 		String inputName = authentication.getName();
 		String inputPass = authentication.getCredentials().toString();
 		String hashName = this.convHash(inputName, this.algo, this.digit);
@@ -47,7 +45,6 @@ public class BasicAuthenticationProvider implements AuthenticationProvider {
 	// {{{ public boolean supports(Class<?> authentication)
 	@Override
 	public boolean supports(Class<?> authentication) {
-		System.out.println(">>> BasicAuthenticationProvider#supports()");
 		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
 	}
 	// }}}

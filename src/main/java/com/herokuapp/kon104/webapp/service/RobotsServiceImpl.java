@@ -1,21 +1,27 @@
-package com.herokuapp.kon104.webapp.domain;
+package com.herokuapp.kon104.webapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**
- * Robots Service
+ * Robots Service Implement Class
  */
 @Service
-public class RobotsService
+public class RobotsServiceImpl implements RobotsService
 {
-	@Autowired
 	private HttpRequestUtility hrUtil;
 
+	// {{{ public RobotsServiceImpl(HttpRequestUtility hrUtil)
+	public RobotsServiceImpl(HttpRequestUtility hrUtil)
+	{
+		this.hrUtil = hrUtil;
+	}
+	// }}}
+
 	// {{{ public String getSiteMapUrl(HttpServletRequest request)
+	@Override
 	public String getSiteMapUrl(HttpServletRequest request)
 	{
 		String domain = hrUtil.getDomainURL(request);
