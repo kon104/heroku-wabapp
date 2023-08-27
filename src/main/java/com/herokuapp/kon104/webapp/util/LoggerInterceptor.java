@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.CodeSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,7 @@ public class LoggerInterceptor
 	public void beforeController(JoinPoint jp)
 	{
 		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, "START");
+		this.outputLabel(logger, jp, true);
 	}
 	// }}}
 
@@ -30,7 +31,7 @@ public class LoggerInterceptor
 	public void beforeService(JoinPoint jp)
 	{
 		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, "START");
+		this.outputLabel(logger, jp, true);
 	}
 	// }}}
 
@@ -39,7 +40,7 @@ public class LoggerInterceptor
 	public void beforeSecurity(JoinPoint jp)
 	{
 		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, "START");
+		this.outputLabel(logger, jp, true);
 	}
 	// }}}
 
@@ -48,7 +49,7 @@ public class LoggerInterceptor
 	public void afterController(JoinPoint jp)
 	{
 		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, "END  ");
+		this.outputLabel(logger, jp, false);
 	}
 	// }}}
 
@@ -57,7 +58,7 @@ public class LoggerInterceptor
 	public void afterService(JoinPoint jp)
 	{
 		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, "END  ");
+		this.outputLabel(logger, jp, false);
 	}
 	// }}}
 
@@ -66,7 +67,7 @@ public class LoggerInterceptor
 	public void afterSecurity(JoinPoint jp)
 	{
 		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, "END  ");
+		this.outputLabel(logger, jp, false);
 	}
 	// }}}
 
@@ -87,11 +88,33 @@ public class LoggerInterceptor
 	}
 	// }}}
 
-	// {{{ private void outputLabel(Logger logger, JoinPoint jp, String label)
-	private void outputLabel(Logger logger, JoinPoint jp, String label)
+	// {{{ private void outputLabel(Logger logger, JoinPoint jp, boolean startflg)
+	private void outputLabel(Logger logger, JoinPoint jp, boolean startflg)
 	{
-		String signature = jp.getSignature().toString();
-		logger.info("{} : {}", label, signature);
+		String label = "START";
+		if (! startflg) {
+			label = "END  ";
+		}
+
+		String pathClassMethod = jp.getSignature().toString();
+
+		String param = "";
+		if (startflg) {
+			String[] argsKeys = ((CodeSignature) jp.getSignature()).getParameterNames();
+			Object[] argsVals = jp.getArgs();
+			for (int i = 0; i < argsKeys.length; i++) {
+				if (! param.equals("")) {
+					param += ", ";
+				}
+				param += argsKeys[i] + "=" + String.valueOf(argsVals[i]);
+			}
+		}
+
+		if (param.equals("")) {
+			logger.info("{} >> {}", label, pathClassMethod);
+		} else {
+			logger.info("{} >> {} : {}", label, pathClassMethod, param);
+		}
 	}
 	// }}}
 

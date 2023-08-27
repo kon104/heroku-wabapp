@@ -81,14 +81,6 @@ public class YConnectIdTokenServiceImpl implements YConnectIdTokenService
 		result = this.checkYidLoginWithinMaxAge(unixTime, jsonPayload.get("auth_time").intValue(), max_age);
 		results.put("verify14", result);
 
-
-System.out.println(result);
-System.out.println(algorithm);
-System.out.println(idtokens.get("header"));
-System.out.println(idtokens.get("moge"));
-System.out.println(header);
-System.out.println(payload);
-
 		return results;
 	}
 	// }}}
@@ -228,7 +220,6 @@ System.out.println(payload);
 				.collect(Collectors.toList());
 
 		for(String line : lists){
-			System.out.println(">>>[" + line + "]");
 			result = clientId.equals(line);
 			if (result == true) {
 				break;
