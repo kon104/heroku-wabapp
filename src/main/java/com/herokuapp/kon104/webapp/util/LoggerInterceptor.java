@@ -13,9 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.io.StringWriter;
-import java.io.PrintWriter;
-
 @Aspect
 @Component
 public class LoggerInterceptor
@@ -30,8 +27,7 @@ public class LoggerInterceptor
 	@Before("execution(* com.herokuapp.kon104.webapp.controller.*.*(..))")
 	public void beforeController(JoinPoint jp)
 	{
-		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp,MODE_START);
+		this.outputState(jp,MODE_START);
 	}
 	// }}}
 
@@ -39,8 +35,7 @@ public class LoggerInterceptor
 	@Before("execution(* com.herokuapp.kon104.webapp.service.*.*(..))")
 	public void beforeService(JoinPoint jp)
 	{
-		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, MODE_START);
+		this.outputState(jp, MODE_START);
 	}
 	// }}}
 
@@ -48,8 +43,7 @@ public class LoggerInterceptor
 	@Before("execution(* com.herokuapp.kon104.webapp.security.*.*(..))")
 	public void beforeSecurity(JoinPoint jp)
 	{
-		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, MODE_START);
+		this.outputState(jp, MODE_START);
 	}
 	// }}}
 
@@ -57,8 +51,7 @@ public class LoggerInterceptor
 	@After("execution(* com.herokuapp.kon104.webapp.controller.*.*(..))")
 	public void afterController(JoinPoint jp)
 	{
-		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, MODE_END);
+		this.outputState(jp, MODE_END);
 	}
 	// }}}
 
@@ -66,8 +59,7 @@ public class LoggerInterceptor
 	@AfterReturning(value = "execution(* com.herokuapp.kon104.webapp.service.*.*(..))", returning = "retval")
 	public void afterReturningService(JoinPoint jp, Object retval)
 	{
-		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, MODE_END, retval);
+		this.outputState(jp, MODE_END, retval);
 	}
 	// }}}
 
@@ -75,8 +67,7 @@ public class LoggerInterceptor
 	@AfterThrowing(value = "execution(* com.herokuapp.kon104.webapp.service.*.*(..))", throwing = "e")
 	public void afterThrowingService(JoinPoint jp, RuntimeException e)
 	{
-		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, e);
+		this.outputState(jp, e);
 	}
 	// }}}
 
@@ -84,30 +75,30 @@ public class LoggerInterceptor
 	@After("execution(* com.herokuapp.kon104.webapp.security.*.*(..))")
 	public void afterSecurity(JoinPoint jp)
 	{
-		Logger logger = this.assignLogger(jp);
-		this.outputLabel(logger, jp, MODE_END);
+		this.outputState(jp, MODE_END);
 	}
 	// }}}
 
-	// {{{ private void outputLabel(Logger logger, JoinPoint jp, int mode)
-	private void outputLabel(Logger logger, JoinPoint jp, int mode)
+	// {{{ private void outputState(JoinPoint jp, int mode)
+	private void outputState(JoinPoint jp, int mode)
 	{
-		this.outputLabel(logger, jp, mode, null, null);
+		this.outputState(jp, mode, null, null);
 	}
 	// }}}
 
-	// {{{ private void outputLabel(Logger logger, JoinPoint jp, int mode, Object retval)
-	private void outputLabel(Logger logger, JoinPoint jp, int mode, Object retval)
+	// {{{ private void outputState(JoinPoint jp, int mode, Object retval)
+	private void outputState(JoinPoint jp, int mode, Object retval)
 	{
-		this.outputLabel(logger, jp, mode, retval, null);
+		this.outputState(jp, mode, retval, null);
 	}
 	// }}}
 
-	// {{{ private void outputLabel(Logger logger, JoinPoint jp, int mode, Object retval, RuntimeException e)
-	private void outputLabel(Logger logger, JoinPoint jp, int mode, Object retval, RuntimeException e)
+	// {{{ private void outputState(JoinPoint jp, int mode, Object retval, RuntimeException e)
+	private void outputState(JoinPoint jp, int mode, Object retval, RuntimeException e)
 	{
 		String label = null;
 		String infoVal = null;
+
 		if (mode == MODE_START) {
 			label = "START";
 			String[] argsKeys = ((CodeSignature) jp.getSignature()).getParameterNames();
@@ -142,18 +133,27 @@ public class LoggerInterceptor
 		}
 		String pathClassMethod = jp.getSignature().toString();
 
+		Logger logger = this.assignLogger(jp);
 		if (infoVal == null) {
-			logger.info("{} >> {}", label, pathClassMethod);
+			if (mode != MODE_EXCEPTION) {
+				logger.info("{} >> {}", label, pathClassMethod);
+			} else {
+				logger.error("{} >> {}", label, pathClassMethod);
+			}
 		} else {
-			logger.info("{} >> {} >> {}", label, pathClassMethod, infoVal);
+			if (mode != MODE_EXCEPTION) {
+				logger.info("{} >> {} >> {}", label, pathClassMethod, infoVal);
+			} else {
+				logger.error("{} >> {} >> {}", label, pathClassMethod, infoVal);
+			}
 		}
 	}
 	// }}}
 
-	// {{{ private void outputLabel(Logger logger, JoinPoint jp, RuntimeException e)
-	private void outputLabel(Logger logger, JoinPoint jp, RuntimeException e)
+	// {{{ private void outputState(JoinPoint jp, RuntimeException e)
+	private void outputState(JoinPoint jp, RuntimeException e)
 	{
-		this.outputLabel(logger, jp, MODE_EXCEPTION, null, e);
+		this.outputState(jp, MODE_EXCEPTION, null, e);
 	}
 	// }}}
 

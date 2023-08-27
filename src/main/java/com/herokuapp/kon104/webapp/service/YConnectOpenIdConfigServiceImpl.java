@@ -53,7 +53,7 @@ public class YConnectOpenIdConfigServiceImpl implements YConnectOpenIdConfigServ
 	}
 	// }}}
 
-	// {{{ public String makeAuthUrl(HttpServletRequest request, String clientId, String nonce, int max_age)
+	// {{{ public String makeAuthUrl(YConnectOpenIdConfigResponse resp, HttpServletRequest request, String clientId, String nonce, int max_age)
 	@Override
 	public String makeAuthUrl(YConnectOpenIdConfigResponse resp, HttpServletRequest request, String clientId, String nonce, int max_age)
 	{
