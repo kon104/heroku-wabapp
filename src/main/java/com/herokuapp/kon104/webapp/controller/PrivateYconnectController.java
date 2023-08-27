@@ -79,15 +79,7 @@ public class PrivateYconnectController
 			model.addAttribute("yctoken", respToken);
 			String issuer = respOpenId.getIssuer();
 			Map<String, Boolean> result = this.yconIdToken.verify(id_token, issuer, clientId, nonce, access_token, this.max_age);
-			model.addAttribute("verify6", result.get("verify6"));
-			model.addAttribute("verify7", result.get("verify7"));
-			model.addAttribute("verify8", result.get("verify8"));
-			model.addAttribute("verify9", result.get("verify9"));
-			model.addAttribute("verify10", result.get("verify10"));
-			model.addAttribute("verify11", result.get("verify11"));
-			model.addAttribute("verify12", result.get("verify12"));
-			model.addAttribute("verify13", result.get("verify13"));
-			model.addAttribute("verify14", result.get("verify14"));
+			model.addAttribute("verify", result);
 		} else
 		if ("userinfo".equals(mode) == true) {
 			model.addAttribute("code", code);

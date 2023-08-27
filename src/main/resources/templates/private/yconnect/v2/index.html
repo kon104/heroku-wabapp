@@ -40,14 +40,14 @@
 <h2>Verify ID Token</h2>
 
 <table>
-	<tr><td>Verify Step 6</td><td th:text="${verify6}"></td></tr>
-	<tr><td>Verify Step 7</td><td th:text="${verify7}"></td></tr>
-	<tr><td>Verify Step 8</td><td th:text="${verify8}"></td></tr>
-	<tr><td>Verify Step 9</td><td th:text="${verify9}"></td></tr>
-	<tr><td>Verify Step 10 (Step 11)</td><td th:text="${verify10}"></td></tr>
-	<tr><td>Verify Step 12</td><td th:text="${verify12}"></td></tr>
-	<tr><td>Verify Step 13</td><td th:text="${verify13}"></td></tr>
-	<tr><td>Verify Step 14</td><td th:text="${verify14}"></td></tr>
+	<tr><td>Verify Step 6</td><td><span th:if="${verify}" th:text="${verify['verify6']}"></span></td></tr>
+	<tr><td>Verify Step 7</td><td><span th:if="${verify}" th:text="${verify['verify7']}"></span></td></tr>
+	<tr><td>Verify Step 8</td><td><span th:if="${verify}" th:text="${verify['verify8']}"></span></td></tr>
+	<tr><td>Verify Step 9</td><td><span th:if="${verify}" th:text="${verify['verify9']}"></span></td></tr>
+	<tr><td>Verify Step 10 (Step 11)</td><td><span th:if="${verify}" th:text="${verify['verify10']}"></span></td></tr>
+	<tr><td>Verify Step 12</td><td><span th:if="${verify}" th:text="${verify['verify12']}"></span></td></tr>
+	<tr><td>Verify Step 13</td><td><span th:if="${verify}" th:text="${verify['verify13']}"></span></td></tr>
+	<tr><td>Verify Step 14</td><td><span th:if="${verify}" th:text="${verify['verify14']}"></span></td></tr>
 </table>
 
 <ul>
