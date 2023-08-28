@@ -31,6 +31,14 @@ public class LoggerInterceptor
 	}
 	// }}}
 
+	// {{{ public void beforeRepository(JoinPoint jp)
+	@Before("execution(* com.herokuapp.kon104.webapp.repository.*.*(..))")
+	public void beforeRepository(JoinPoint jp)
+	{
+		this.outputState(jp, MODE_START);
+	}
+	// }}}
+
 	// {{{ public void beforeService(JoinPoint jp)
 	@Before("execution(* com.herokuapp.kon104.webapp.service.*.*(..))")
 	public void beforeService(JoinPoint jp)
@@ -52,6 +60,22 @@ public class LoggerInterceptor
 	public void afterController(JoinPoint jp)
 	{
 		this.outputState(jp, MODE_END);
+	}
+	// }}}
+
+	// {{{ public void afterReturningRepository(JoinPoint jp, Object retval)
+	@AfterReturning(value = "execution(* com.herokuapp.kon104.webapp.repository.*.*(..))", returning = "retval")
+	public void afterReturningRepository(JoinPoint jp, Object retval)
+	{
+		this.outputState(jp, MODE_END, retval);
+	}
+	// }}}
+
+	// {{{ public void afterThrowingRepository(JoinPoint jp, RuntimeException e)
+	@AfterThrowing(value = "execution(* com.herokuapp.kon104.webapp.repository.*.*(..))", throwing = "e")
+	public void afterThrowingRepository(JoinPoint jp, RuntimeException e)
+	{
+		this.outputState(jp, e);
 	}
 	// }}}
 

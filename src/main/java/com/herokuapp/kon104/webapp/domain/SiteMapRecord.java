@@ -25,4 +25,15 @@ public class SiteMapRecord
 	}
 	// }}}
 
+	// {{{ public String toString()
+	@Override
+	public String toString()
+	{
+		return "loc=[" + this.loc + "]\n"
+			+ "lastmod=[" + this.lastmod + "]\n"
+			+ "changefreq=[" + this.changefreq + "]\n"
+			+ "priority=[" + this.priority + "]";
+	}
+	// }}}
+
 }
