@@ -21,4 +21,14 @@ public class StockMoveAvgRecord
 	}
 	// }}}
 
+	// {{{ public String toString()
+	@Override
+	public String toString()
+	{
+		return "code=[" + code + "]\n"
+			+ "company=[" + company + "]\n"
+			+ "url=[" + url + "]";
+	}
+	// }}}
+
 }

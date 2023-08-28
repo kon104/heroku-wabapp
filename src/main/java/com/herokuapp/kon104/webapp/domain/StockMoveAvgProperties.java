@@ -16,4 +16,15 @@ public class StockMoveAvgProperties
 	private List<String> codes;
 	private Map<String, String> companies;
 	private Map<String, String> urls;
+
+	// {{{ public String toString()
+	@Override
+	public String toString()
+	{
+		return "codes=[" + codes + "]\n"
+			+ "companies=[" + companies + "]\n"
+			+ "urls=[" + urls + "]";
+	}
+	// }}}
+
 }
