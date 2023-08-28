@@ -1,12 +1,12 @@
-package com.herokuapp.kon104.webapp.service;
+package com.herokuapp.kon104.webapp.repository;
 
 import javax.servlet.http.HttpServletRequest;
 import com.herokuapp.kon104.webapp.domain.YConnectTokenResponse;
 
 /**
- * YConnect Token Service Interface
+ * YConnect Token Repository Interface
  */
-public interface YConnectTokenService
+public interface YConnectTokenRepository
 {
 	public YConnectTokenResponse generate(String url, String clientId, String clientSecret, String code, HttpServletRequest request);
 }

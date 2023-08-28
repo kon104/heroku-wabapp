@@ -8,10 +8,10 @@ import javax.servlet.http.HttpSession;
 import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
 import com.herokuapp.kon104.webapp.domain.YConnectTokenResponse;
 import com.herokuapp.kon104.webapp.domain.YConnectUserInfoResponse;
+import com.herokuapp.kon104.webapp.repository.YConnectTokenRepository;
+import com.herokuapp.kon104.webapp.repository.YConnectUserInfoRepository;
 import com.herokuapp.kon104.webapp.service.YConnectIdTokenService;
 import com.herokuapp.kon104.webapp.service.YConnectOpenIdConfigService;
-import com.herokuapp.kon104.webapp.service.YConnectTokenService;
-import com.herokuapp.kon104.webapp.service.YConnectUserInfoService;
 
 /**
  *
@@ -22,16 +22,16 @@ import com.herokuapp.kon104.webapp.service.YConnectUserInfoService;
 public class YConnectServiceImpl implements YConnectService
 {
 	private YConnectOpenIdConfigService yconOpenIdConf;
-	private YConnectTokenService yconToken;
-	private YConnectUserInfoService yconUserInfo;
+	private YConnectTokenRepository yconToken;
+	private YConnectUserInfoRepository yconUserInfo;
 	private YConnectIdTokenService yconIdToken;
 	private HttpSession session;
 
 	// {{{ public YConnectService(...)
 	public YConnectServiceImpl(
 		YConnectOpenIdConfigService yconOpenIdConf,
-		YConnectTokenService yconToken,
-		YConnectUserInfoService yconUserInfo,
+		YConnectTokenRepository yconToken,
+		YConnectUserInfoRepository yconUserInfo,
 		YConnectIdTokenService yconIdToken,
 		HttpSession session)
 	{
@@ -43,9 +43,9 @@ public class YConnectServiceImpl implements YConnectService
 	}
 	// }}}
 
-	// {{{ public void v2(...)
+	// {{{ public void mainV2(...)
 	@Override
-	public void v2(
+	public void mainV2(
 			Model model,
 			HttpServletRequest request,
 			String mode, String clientId, String clientSecret,

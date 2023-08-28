@@ -1,4 +1,4 @@
-package com.herokuapp.kon104.webapp.service;
+package com.herokuapp.kon104.webapp.repository;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
@@ -9,16 +9,16 @@ import com.herokuapp.kon104.webapp.domain.YConnectTokenResponse;
 import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**
- * YConnect Token Service Class
+ * YConnect Token Repository Implement Class
  */
 @Service
-public class YConnectTokenServiceImpl implements YConnectTokenService
+public class YConnectTokenRepositoryImpl implements YConnectTokenRepository
 {
 	private RestTemplate restTemplate;
 	private HttpRequestUtility hrUtil;
 
-	// {{{ public YConnectTokenServiceImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
-	public YConnectTokenServiceImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
+	// {{{ public YConnectTokenRepositoryImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
+	public YConnectTokenRepositoryImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
 	{
 		this.restTemplate = restTemplate;
 		this.hrUtil = hrUtil;
