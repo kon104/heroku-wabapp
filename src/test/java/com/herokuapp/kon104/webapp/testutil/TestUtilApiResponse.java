@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestUtilApiResponse
 {
-	private static String FILE_PATH = "src/main/resources/file/test-apiresponse";
+	private static String FILE_PATH = "src/test/resources/file/apiresponse";
 
 	// {{{ public static String getString(String filename)
 	public static String getString(String filename)
