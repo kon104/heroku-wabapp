@@ -1,7 +1,7 @@
 package com.herokuapp.kon104.webapp.repository;
 
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -11,7 +11,7 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 /**
  * YConnect Token Repository Implement Class
  */
-@Service
+@Repository
 public class YConnectTokenRepositoryImpl implements YConnectTokenRepository
 {
 	private RestTemplate restTemplate;

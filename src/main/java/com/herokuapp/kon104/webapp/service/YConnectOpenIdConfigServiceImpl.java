@@ -1,7 +1,6 @@
 package com.herokuapp.kon104.webapp.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
@@ -15,23 +14,12 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 @Service
 public class YConnectOpenIdConfigServiceImpl implements YConnectOpenIdConfigService
 {
-	private RestTemplate restTemplate;
 	private HttpRequestUtility hrUtil;
 
-	// {{{ public YConnectOpenIdConfigServiceImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
-	public YConnectOpenIdConfigServiceImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
+	// {{{ public YConnectOpenIdConfigServiceImpl(HttpRequestUtility hrUtil)
+	public YConnectOpenIdConfigServiceImpl(HttpRequestUtility hrUtil)
 	{
-		this.restTemplate = restTemplate;
 		this.hrUtil = hrUtil;
-	}
-	// }}}
-
-	// {{{ public YConnectOpenIdConfigResponse discovery()
-	@Override
-	public YConnectOpenIdConfigResponse discovery()
-	{
-		YConnectOpenIdConfigResponse resp = this.restTemplate.getForObject(URL, YConnectOpenIdConfigResponse.class);
-		return resp;
 	}
 	// }}}
 

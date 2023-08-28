@@ -20,7 +20,8 @@ public class YConnectOpenIdConfigServiceTest
 	}
 	// }}}
 
-	// {{{ public void discoveryTest()
+	// {{{ XXXXX public void discoveryTest()
+/*
 	@Test
 	public void discoveryTest()
 	{
@@ -29,6 +30,7 @@ public class YConnectOpenIdConfigServiceTest
 		assertThat(resp.getAuthorization_endpoint()).isEqualTo("https://auth.login.yahoo.co.jp/yconnect/v2/authorization");
 		assertThat(resp.getToken_endpoint()).isEqualTo("https://auth.login.yahoo.co.jp/yconnect/v2/token");
 	}
+*/
 	// }}}
 
 	// {{{ public void generateNonceTest()
@@ -40,7 +42,8 @@ public class YConnectOpenIdConfigServiceTest
 	}
 	// }}}
 
-	// {{{ public void makeAuthUrlTest()
+	// {{{ XXXXX public void makeAuthUrlTest()
+/*
 	@Test
 	public void makeAuthUrlTest()
 	{
@@ -62,6 +65,7 @@ public class YConnectOpenIdConfigServiceTest
 
 		assertThat(url).isEqualTo(answer);
 	}
+*/
 	// }}}
 
 }

@@ -1,6 +1,6 @@
 package com.herokuapp.kon104.webapp.repository;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import com.herokuapp.kon104.webapp.domain.YConnectUserInfoResponse;
 /**
  * YConnect UserInfo Repository Implement Class
  */
-@Service
+@Repository
 public class YConnectUserInfoRepositoryImpl implements YConnectUserInfoRepository
 {
 	private RestTemplate restTemplate;

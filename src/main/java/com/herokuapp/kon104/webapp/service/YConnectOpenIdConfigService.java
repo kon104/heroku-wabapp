@@ -8,10 +8,6 @@ import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
  */
 public interface YConnectOpenIdConfigService
 {
-	public static final String URL = "https://auth.login.yahoo.co.jp/yconnect/v2/.well-known/openid-configuration";
-
-	public YConnectOpenIdConfigResponse discovery();
 	public String generateNonce();
 	public String makeAuthUrl(YConnectOpenIdConfigResponse resp, HttpServletRequest request, String clientId, String nonce, int max_age);
-
 }
