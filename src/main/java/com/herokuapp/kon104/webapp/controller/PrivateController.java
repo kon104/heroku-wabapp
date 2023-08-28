@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Collections;
 import java.util.List;
-import com.herokuapp.kon104.webapp.service.StockMoveAvgService;
+import com.herokuapp.kon104.webapp.repository.StockMoveAvgRepository;
 
 /**
  * Private Apps Area
@@ -17,10 +17,10 @@ import com.herokuapp.kon104.webapp.service.StockMoveAvgService;
 public class PrivateController
 {
 
-	private StockMoveAvgService moveavg;
+	private StockMoveAvgRepository moveavg;
 
-	// {{{ public PrivateController(StockMoveAvgService moveavg)
-	public PrivateController(StockMoveAvgService moveavg)
+	// {{{ public PrivateController(StockMoveAvgRepository moveavg)
+	public PrivateController(StockMoveAvgRepository moveavg)
 	{
 		this.moveavg = moveavg;
 	}

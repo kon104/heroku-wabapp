@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
+import com.herokuapp.kon104.webapp.repository.SiteMapRepository;
 import com.herokuapp.kon104.webapp.service.PortalService;
 import com.herokuapp.kon104.webapp.service.RobotsService;
-import com.herokuapp.kon104.webapp.service.SiteMapService;
 
 /**
  * Portal Controller
@@ -17,11 +17,11 @@ import com.herokuapp.kon104.webapp.service.SiteMapService;
 public class PortalController
 {
 	private PortalService portal;
-	private SiteMapService sitemap;
+	private SiteMapRepository sitemap;
 	private RobotsService robots;
 
-	// {{{ public PortalController(PortalService portal, SiteMapService sitemap, RobotsService robots)
-	public PortalController(PortalService portal, SiteMapService sitemap, RobotsService robots)
+	// {{{ public PortalController(PortalService portal, SiteMapRepository sitemap, RobotsService robots)
+	public PortalController(PortalService portal, SiteMapRepository sitemap, RobotsService robots)
 	{
 		this.portal = portal;
 		this.sitemap = sitemap;
@@ -45,7 +45,7 @@ public class PortalController
 	@GetMapping(value = "/sitemap.xml", produces = MediaType.TEXT_XML_VALUE)
 	public String sitemap(HttpServletRequest request, Model model)
 	{
-		model.addAttribute("sitemaps", sitemap.getSiteMap(request));
+		model.addAttribute("sitemaps", this.sitemap.getSiteMap(request));
 		return "portal/sitemap";
 	}
 	// }}}
@@ -54,7 +54,7 @@ public class PortalController
 	@GetMapping(value = "/robots.txt", produces = MediaType.TEXT_PLAIN_VALUE)
 	public String robots(HttpServletRequest request, Model model)
 	{
-		model.addAttribute("sitemap_url", robots.getSiteMapUrl(request));
+		model.addAttribute("sitemap_url", this.robots.getSiteMapUrl(request));
 		return "portal/robots";
 	}
 	// }}}

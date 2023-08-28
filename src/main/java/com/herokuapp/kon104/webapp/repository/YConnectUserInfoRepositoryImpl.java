@@ -1,6 +1,6 @@
-package com.herokuapp.kon104.webapp.service;
+package com.herokuapp.kon104.webapp.repository;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
@@ -8,15 +8,15 @@ import java.util.Map;
 import com.herokuapp.kon104.webapp.domain.YConnectUserInfoResponse;
 
 /**
- * YConnect UserInfo Service Implement Class
+ * YConnect UserInfo Repository Implement Class
  */
-@Service
-public class YConnectUserInfoServiceImpl implements YConnectUserInfoService
+@Repository
+public class YConnectUserInfoRepositoryImpl implements YConnectUserInfoRepository
 {
 	private RestTemplate restTemplate;
 
-	// {{{ public YConnectUserInfoServiceImpl(RestTemplate restTemplate)
-	public YConnectUserInfoServiceImpl(RestTemplate restTemplate)
+	// {{{ public YConnectUserInfoRepositoryImpl(RestTemplate restTemplate)
+	public YConnectUserInfoRepositoryImpl(RestTemplate restTemplate)
 	{
 		this.restTemplate = restTemplate;
 	}

@@ -17,12 +17,12 @@ import com.herokuapp.kon104.webapp.service.YConnectService;
 @RequestMapping("/private/yconnect")
 public class PrivateYconnectController
 {
-	private YConnectService ycon;
+	private YConnectService service;
 
 	// {{{ public PrivateYconnectController(...)
-	public PrivateYconnectController(YConnectService ycon)
+	public PrivateYconnectController(YConnectService service)
 	{
-		this.ycon = ycon;
+		this.service = service;
 	}
 	// }}}
 
@@ -42,7 +42,7 @@ public class PrivateYconnectController
 			@RequestParam(name = "id_token", required = false) String id_token,
 			Model model)
 	{
-		this.ycon.v2(model, request,
+		this.service.mainV2(model, request,
 			mode, clientId, clientSecret,
 			nonce, code,
 			access_token, token_type, refresh_token, expires_in, id_token);

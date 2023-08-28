@@ -1,12 +1,12 @@
-package com.herokuapp.kon104.webapp.service;
+package com.herokuapp.kon104.webapp.repository;
 
 import org.springframework.ui.Model;
 import com.herokuapp.kon104.webapp.domain.YConnectUserInfoResponse;
 
 /**
- * YConnect UserInfo Service Interface
+ * YConnect UserInfo Repository Interface
  */
-public interface YConnectUserInfoService
+public interface YConnectUserInfoRepository
 {
 	public YConnectUserInfoResponse getAttribute(String url, String access_token);
 }

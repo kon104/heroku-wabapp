@@ -1,13 +1,13 @@
-package com.herokuapp.kon104.webapp.service;
+package com.herokuapp.kon104.webapp.repository;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import com.herokuapp.kon104.webapp.domain.SiteMapRecord;
 
 /**
- * Site Map Service Interface
+ * Site Map Repository Interface
  */
-public interface SiteMapService
+public interface SiteMapRepository
 {
 	public List<SiteMapRecord> getSiteMap(HttpServletRequest request);
 }

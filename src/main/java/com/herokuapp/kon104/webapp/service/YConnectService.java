@@ -12,7 +12,7 @@ public interface YConnectService
 {
 	public static final int max_age = 3600;
 
-	public void v2(
+	public void mainV2(
 			Model model,
 			HttpServletRequest request,
 			String mode, String clientId, String clientSecret,

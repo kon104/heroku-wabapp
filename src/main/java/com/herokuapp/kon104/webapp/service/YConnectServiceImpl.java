@@ -8,10 +8,11 @@ import javax.servlet.http.HttpSession;
 import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
 import com.herokuapp.kon104.webapp.domain.YConnectTokenResponse;
 import com.herokuapp.kon104.webapp.domain.YConnectUserInfoResponse;
+import com.herokuapp.kon104.webapp.repository.YConnectOpenIdConfigRepository;
+import com.herokuapp.kon104.webapp.repository.YConnectTokenRepository;
+import com.herokuapp.kon104.webapp.repository.YConnectUserInfoRepository;
 import com.herokuapp.kon104.webapp.service.YConnectIdTokenService;
 import com.herokuapp.kon104.webapp.service.YConnectOpenIdConfigService;
-import com.herokuapp.kon104.webapp.service.YConnectTokenService;
-import com.herokuapp.kon104.webapp.service.YConnectUserInfoService;
 
 /**
  *
@@ -21,21 +22,24 @@ import com.herokuapp.kon104.webapp.service.YConnectUserInfoService;
 @Service
 public class YConnectServiceImpl implements YConnectService
 {
-	private YConnectOpenIdConfigService yconOpenIdConf;
-	private YConnectTokenService yconToken;
-	private YConnectUserInfoService yconUserInfo;
+	private YConnectOpenIdConfigRepository yconOpenIdConfRepository;
+	private YConnectOpenIdConfigService yconOpenIdConfService;
+	private YConnectTokenRepository yconToken;
+	private YConnectUserInfoRepository yconUserInfo;
 	private YConnectIdTokenService yconIdToken;
 	private HttpSession session;
 
 	// {{{ public YConnectService(...)
 	public YConnectServiceImpl(
-		YConnectOpenIdConfigService yconOpenIdConf,
-		YConnectTokenService yconToken,
-		YConnectUserInfoService yconUserInfo,
+		YConnectOpenIdConfigRepository yconOpenIdConfRepository,
+		YConnectOpenIdConfigService yconOpenIdConfService,
+		YConnectTokenRepository yconToken,
+		YConnectUserInfoRepository yconUserInfo,
 		YConnectIdTokenService yconIdToken,
 		HttpSession session)
 	{
-		this.yconOpenIdConf = yconOpenIdConf;
+		this.yconOpenIdConfRepository = yconOpenIdConfRepository;
+		this.yconOpenIdConfService = yconOpenIdConfService;
 		this.yconToken = yconToken;
 		this.yconUserInfo = yconUserInfo;
 		this.yconIdToken = yconIdToken;
@@ -43,9 +47,9 @@ public class YConnectServiceImpl implements YConnectService
 	}
 	// }}}
 
-	// {{{ public void v2(...)
+	// {{{ public void mainV2(...)
 	@Override
-	public void v2(
+	public void mainV2(
 			Model model,
 			HttpServletRequest request,
 			String mode, String clientId, String clientSecret,
@@ -53,10 +57,10 @@ public class YConnectServiceImpl implements YConnectService
 			String access_token, String token_type, String refresh_token,
 			String expires_in, String id_token)
 	{
-		YConnectOpenIdConfigResponse respOpenId = this.yconOpenIdConf.discovery();
+		YConnectOpenIdConfigResponse respOpenId = this.yconOpenIdConfRepository.discovery();
 
 		if ("setid".equals(mode) == true) {
-			nonce = this.yconOpenIdConf.generateNonce();
+			nonce = this.yconOpenIdConfService.generateNonce();
 			this.session.setAttribute("nonce", nonce);
 			this.session.setAttribute("clientid", clientId);
 			this.session.setAttribute("secret", clientSecret);
@@ -87,7 +91,7 @@ public class YConnectServiceImpl implements YConnectService
 			model.addAttribute("yctoken", respToken);
 		}
 
-		String authUrl = this.yconOpenIdConf.makeAuthUrl(respOpenId, request, clientId, nonce, this.max_age);
+		String authUrl = this.yconOpenIdConfService.makeAuthUrl(respOpenId, request, clientId, nonce, this.max_age);
 		model.addAttribute("authUrl", authUrl);
 		model.addAttribute("nonce", nonce);
 		model.addAttribute("clientid", clientId);
