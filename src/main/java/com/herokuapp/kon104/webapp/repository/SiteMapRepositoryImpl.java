@@ -1,6 +1,6 @@
-package com.herokuapp.kon104.webapp.service;
+package com.herokuapp.kon104.webapp.repository;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,15 +9,15 @@ import com.herokuapp.kon104.webapp.domain.SiteMapRecord;
 import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**
- * Site Map Service Implement Class
+ * Site Map Repository Implement Class
  */
-@Service
-public class SiteMapServiceImpl implements SiteMapService
+@Repository
+public class SiteMapRepositoryImpl implements SiteMapRepository
 {
 	private HttpRequestUtility hrUtil;
 
-	// {{{ public SiteMapServiceImpl(HttpRequestUtility hrUtil)
-	public SiteMapServiceImpl(HttpRequestUtility hrUtil)
+	// {{{ public SiteMapReppositoryImpl(HttpRequestUtility hrUtil)
+	public SiteMapRepositoryImpl(HttpRequestUtility hrUtil)
 	{
 		this.hrUtil = hrUtil;
 	}

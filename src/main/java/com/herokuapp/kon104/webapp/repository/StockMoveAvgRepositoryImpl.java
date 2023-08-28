@@ -1,22 +1,22 @@
-package com.herokuapp.kon104.webapp.service;
+package com.herokuapp.kon104.webapp.repository;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import com.herokuapp.kon104.webapp.domain.StockMoveAvgProperties;
 import com.herokuapp.kon104.webapp.domain.StockMoveAvgRecord;
 
 /**
- * Stock Move Avg Service Implement Class
+ * Stock Move Avg Repository Implement Class
  */
-@Service
-public class StockMoveAvgServiceImpl implements StockMoveAvgService
+@Repository
+public class StockMoveAvgRepositoryImpl implements StockMoveAvgRepository
 {
 
 	private StockMoveAvgProperties properties;
 
-	// {{{ public StockMoveAvgServiceImpl(StockMoveAvgProperties properties)
-	public StockMoveAvgServiceImpl(StockMoveAvgProperties properties)
+	// {{{ public StockMoveAvgRepositoryImpl(StockMoveAvgProperties properties)
+	public StockMoveAvgRepositoryImpl(StockMoveAvgProperties properties)
 	{
 		this.properties = properties;
 	}

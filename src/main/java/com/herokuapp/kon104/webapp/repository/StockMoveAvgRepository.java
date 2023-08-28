@@ -1,12 +1,12 @@
-package com.herokuapp.kon104.webapp.service;
+package com.herokuapp.kon104.webapp.repository;
 
 import java.util.List;
 import com.herokuapp.kon104.webapp.domain.StockMoveAvgRecord;
 
 /**
- * Stock Move Avg Service Interface
+ * Stock Move Avg Repository Interface
  */
-public interface StockMoveAvgService
+public interface StockMoveAvgRepository
 {
 	public List<StockMoveAvgRecord> getMoveAvg();
 }

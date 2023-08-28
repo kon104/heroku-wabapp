@@ -6,48 +6,37 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpServletRequest;
 import static org.assertj.core.api.Assertions.assertThat;
 import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
+import com.herokuapp.kon104.webapp.repository.YConnectOpenIdConfigRepository;
 
 @SpringBootTest
 public class YConnectOpenIdConfigServiceTest
 {
-	private final YConnectOpenIdConfigService yconnectOpenIdConfigService;
+	private final YConnectOpenIdConfigService target;
+	private final YConnectOpenIdConfigRepository repository;
 
-	// {{{ public YConnectOpenIdConfigServiceTest(YConnectOpenIdConfigService yconnectOpenIdConfigService)
+	// {{{ public YConnectOpenIdConfigServiceTest(YConnectOpenIdConfigService target, YConnectOpenIdConfigRepository repository)
 	@Autowired
-	public YConnectOpenIdConfigServiceTest(YConnectOpenIdConfigService yconnectOpenIdConfigService)
+	public YConnectOpenIdConfigServiceTest(YConnectOpenIdConfigService target, YConnectOpenIdConfigRepository repository)
 	{
-		this.yconnectOpenIdConfigService = yconnectOpenIdConfigService;
+		this.target = target;
+		this.repository = repository;
 	}
-	// }}}
-
-	// {{{ XXXXX public void discoveryTest()
-/*
-	@Test
-	public void discoveryTest()
-	{
-		YConnectOpenIdConfigResponse resp = this.yconnectOpenIdConfigService.discovery();
-		assertThat(resp.getIssuer()).isEqualTo("https://auth.login.yahoo.co.jp/yconnect/v2");
-		assertThat(resp.getAuthorization_endpoint()).isEqualTo("https://auth.login.yahoo.co.jp/yconnect/v2/authorization");
-		assertThat(resp.getToken_endpoint()).isEqualTo("https://auth.login.yahoo.co.jp/yconnect/v2/token");
-	}
-*/
 	// }}}
 
 	// {{{ public void generateNonceTest()
 	@Test
 	public void generateNonceTest()
 	{
-		String nonce = this.yconnectOpenIdConfigService.generateNonce();
+		String nonce = this.target.generateNonce();
 		assertThat(nonce).containsOnlyDigits();
 	}
 	// }}}
 
-	// {{{ XXXXX public void makeAuthUrlTest()
-/*
+	// {{{ public void makeAuthUrlTest()
 	@Test
 	public void makeAuthUrlTest()
 	{
-		YConnectOpenIdConfigResponse resp = this.yconnectOpenIdConfigService.discovery();
+		YConnectOpenIdConfigResponse resp = this.repository.discovery();
 		MockHttpServletRequest request = new MockHttpServletRequest();
 		String clientId = "abc";
 		String nonce = "xyz";
@@ -61,11 +50,10 @@ public class YConnectOpenIdConfigServiceTest
 			+ "&nonce=" + nonce
 			+ "&max_age=" + String.valueOf(max_age);
 
-		String url = this.yconnectOpenIdConfigService.makeAuthUrl(resp, request, clientId, nonce, max_age);
+		String url = this.target.makeAuthUrl(resp, request, clientId, nonce, max_age);
 
 		assertThat(url).isEqualTo(answer);
 	}
-*/
 	// }}}
 
 }
