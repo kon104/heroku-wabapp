@@ -12,6 +12,7 @@ import org.aspectj.lang.reflect.CodeSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientResponseException;
 
 @Aspect
 @Component
@@ -21,7 +22,6 @@ public class LoggerInterceptor
 
 	public final static int MODE_START = 1;
 	public final static int MODE_END = 2;
-	public final static int MODE_EXCEPTION = 3;
 
 	// {{{ public void beforeController(JoinPoint jp)
 	@Before("execution(* com.herokuapp.kon104.webapp.controller.*.*(..))")
@@ -67,7 +67,7 @@ public class LoggerInterceptor
 	@AfterReturning(value = "execution(* com.herokuapp.kon104.webapp.repository.*.*(..))", returning = "retval")
 	public void afterReturningRepository(JoinPoint jp, Object retval)
 	{
-		this.outputState(jp, MODE_END, retval);
+		this.outputState(jp, retval);
 	}
 	// }}}
 
@@ -83,7 +83,7 @@ public class LoggerInterceptor
 	@AfterReturning(value = "execution(* com.herokuapp.kon104.webapp.service.*.*(..))", returning = "retval")
 	public void afterReturningService(JoinPoint jp, Object retval)
 	{
-		this.outputState(jp, MODE_END, retval);
+		this.outputState(jp, retval);
 	}
 	// }}}
 
@@ -110,10 +110,17 @@ public class LoggerInterceptor
 	}
 	// }}}
 
-	// {{{ private void outputState(JoinPoint jp, int mode, Object retval)
-	private void outputState(JoinPoint jp, int mode, Object retval)
+	// {{{ private void outputState(JoinPoint jp, Object retval)
+	private void outputState(JoinPoint jp, Object retval)
 	{
-		this.outputState(jp, mode, retval, null);
+		this.outputState(jp, MODE_END, retval, null);
+	}
+	// }}}
+
+	// {{{ private void outputState(JoinPoint jp, RuntimeException e)
+	private void outputState(JoinPoint jp, RuntimeException e)
+	{
+		this.outputState(jp, MODE_END, null, e);
 	}
 	// }}}
 
@@ -123,6 +130,28 @@ public class LoggerInterceptor
 		String label = null;
 		String infoVal = null;
 
+		if (e != null) {
+			label = "EXCEPTION";
+			StringBuilder build = new StringBuilder();
+			build.append(e.getClass()).append(": ").append(e.getMessage());
+			StackTraceElement[] list = e.getStackTrace();
+			for (StackTraceElement line : list) {
+				build.append(" [").append(line.toString()).append("]");
+				break;
+			}
+			if (e instanceof RestClientResponseException) {
+				RestClientResponseException e2 = (RestClientResponseException) e;
+				build.append("\n")
+					.append("HTTP Status Code: ").append(e2.getRawStatusCode())
+					.append(" ")
+					.append(e2.getStatusText())
+					.append("\n")
+					.append("Response Headers: ").append(e2.getResponseHeaders())
+					.append("\n")
+					.append("Response Body: ").append(e2.getResponseBodyAsString());
+			}
+			infoVal = build.toString();
+		} else
 		if (mode == MODE_START) {
 			label = "START";
 			String[] argsKeys = ((CodeSignature) jp.getSignature()).getParameterNames();
@@ -141,43 +170,23 @@ public class LoggerInterceptor
 			if (retval != null) {
 				infoVal = "Returning : " + String.valueOf(retval);
 			}
-		} else
-		if (mode == MODE_EXCEPTION) {
-			label = "EXCEPTION";
-			if (e != null) {
-				StringBuilder build = new StringBuilder();
-				build.append(e.getClass()).append(": ").append(e.getMessage());
-				StackTraceElement[] list = e.getStackTrace();
-				for (StackTraceElement line : list) {
-					build.append(" [").append(line.toString()).append("]");
-					break;
-				}
-				infoVal = build.toString();
-			}
 		}
 		String pathClassMethod = jp.getSignature().toString();
 
 		Logger logger = this.assignLogger(jp);
 		if (infoVal == null) {
-			if (mode != MODE_EXCEPTION) {
+			if (e == null) {
 				logger.info("{} >> {}", label, pathClassMethod);
 			} else {
 				logger.error("{} >> {}", label, pathClassMethod);
 			}
 		} else {
-			if (mode != MODE_EXCEPTION) {
+			if (e == null) {
 				logger.info("{} >> {} >> {}", label, pathClassMethod, infoVal);
 			} else {
 				logger.error("{} >> {} >> {}", label, pathClassMethod, infoVal);
 			}
 		}
-	}
-	// }}}
-
-	// {{{ private void outputState(JoinPoint jp, RuntimeException e)
-	private void outputState(JoinPoint jp, RuntimeException e)
-	{
-		this.outputState(jp, MODE_EXCEPTION, null, e);
 	}
 	// }}}
 
