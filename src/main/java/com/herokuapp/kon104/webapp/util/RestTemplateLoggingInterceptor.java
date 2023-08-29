@@ -23,9 +23,13 @@ public class RestTemplateLoggingInterceptor implements ClientHttpRequestIntercep
 	public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException
 	{
 		Logger logger = LoggerFactory.getLogger(RestTemplateLoggingInterceptor.class.getName());
-		this.logRequest(logger, request, body);
+		if (logger.isDebugEnabled()) {
+			this.logRequest(logger, request, body);
+		}
 		ClientHttpResponse response = execution.execute(request, body);
-		this.logResponse(logger, response);
+		if (logger.isDebugEnabled()) {
+			this.logResponse(logger, response);
+		}
 
 		return response;
 	}
@@ -34,7 +38,7 @@ public class RestTemplateLoggingInterceptor implements ClientHttpRequestIntercep
 	// {{{ private void logRequest(Logger logger, HttpRequest request, byte[] body) throws IOException
 	private void logRequest(Logger logger, HttpRequest request, byte[] body) throws IOException
 	{
-		logger.info("HTTP Request >>> URI > [{}], Method > [{}], Headers > [{}], Body > [{}]",
+		logger.debug("HTTP Request >>> URI > [{}], Method > [{}], Headers > [{}], Body > [{}]",
 			request.getURI(), request.getMethod(), request.getHeaders(), new String(body, "UTF-8"));
 	}
 	// }}}
@@ -59,7 +63,7 @@ public class RestTemplateLoggingInterceptor implements ClientHttpRequestIntercep
 		*/
 		// <--- Notice
 
-		String body = null;
+		String body = "### UNDER CONSTRUCTION !!! ###";
 		logger.info("HTTP Response >>> Status > [{} {}], Headers > [{}], Body > [{}]",
 			response.getStatusCode(), response.getStatusText(), response.getHeaders(), body);
 	}

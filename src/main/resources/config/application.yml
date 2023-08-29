@@ -1,8 +1,8 @@
 
-logging:
-  level:
-#    root: DEBUG
-    org.springframework.web.client.RestTemplate: DEBUG
+#	logging:
+#	  level:
+#	    root: DEBUG
+#	    org.springframework.web.client.RestTemplate: DEBUG
 
 apps:
   private:

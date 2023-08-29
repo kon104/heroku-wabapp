@@ -17,7 +17,7 @@ public class AppConfig
 	public RestTemplate restTemplate() {
 		RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
 		RestTemplate restTemplate = restTemplateBuilder
-//			.additionalInterceptors(new RestTemplateLoggingInterceptor())
+			.additionalInterceptors(new RestTemplateLoggingInterceptor())
 			.build();
 		return restTemplate;
 	}
