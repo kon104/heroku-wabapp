@@ -16,7 +16,10 @@ public class AppConfig
 	@Bean
 	public RestTemplate restTemplate() {
 		RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
-		return restTemplateBuilder.build();
+		RestTemplate restTemplate = restTemplateBuilder
+//			.additionalInterceptors(new RestTemplateLoggingInterceptor())
+			.build();
+		return restTemplate;
 	}
 	// }}}
 
