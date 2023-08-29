@@ -1,4 +1,9 @@
 
+logging:
+  level:
+#    root: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
+
 apps:
   private:
     stockma:

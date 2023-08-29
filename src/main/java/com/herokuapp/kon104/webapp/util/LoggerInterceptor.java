@@ -167,9 +167,7 @@ public class LoggerInterceptor
 		} else
 		if (mode == MODE_END) {
 			label = "END  ";
-			if (retval != null) {
-				infoVal = "Returning : " + String.valueOf(retval);
-			}
+			infoVal = "Returning : " + String.valueOf(retval);
 		}
 		String pathClassMethod = jp.getSignature().toString();
 
