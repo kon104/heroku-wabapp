@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
-import com.herokuapp.kon104.webapp.domain.YConnectUserInfoResponse;
+import com.herokuapp.kon104.webapp.entity.YConnectUserInfoResponse;
 
 /**
  * YConnect UserInfo Repository Implement Class

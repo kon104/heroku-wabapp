@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import com.herokuapp.kon104.webapp.repository.SiteMapRepository;
 import com.herokuapp.kon104.webapp.service.PortalService;
 import com.herokuapp.kon104.webapp.service.RobotsService;

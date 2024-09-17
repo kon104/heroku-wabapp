@@ -1,7 +1,7 @@
 package com.herokuapp.kon104.webapp.repository;
 
-import javax.servlet.http.HttpServletRequest;
-import com.herokuapp.kon104.webapp.domain.YConnectTokenResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import com.herokuapp.kon104.webapp.entity.YConnectTokenResponse;
 
 /**
  * YConnect Token Repository Interface

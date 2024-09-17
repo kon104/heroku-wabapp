@@ -1,4 +1,4 @@
-package com.herokuapp.kon104.webapp.domain;
+package com.herokuapp.kon104.webapp.entity;
 
 import lombok.Getter;
 import lombok.Setter;

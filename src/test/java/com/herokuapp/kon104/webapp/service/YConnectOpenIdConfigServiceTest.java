@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpServletRequest;
 import static org.assertj.core.api.Assertions.assertThat;
-import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
+import com.herokuapp.kon104.webapp.entity.YConnectOpenIdConfigResponse;
 import com.herokuapp.kon104.webapp.repository.YConnectOpenIdConfigRepository;
 
 @SpringBootTest

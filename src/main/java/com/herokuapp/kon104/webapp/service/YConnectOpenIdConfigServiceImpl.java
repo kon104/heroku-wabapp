@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
-import javax.servlet.http.HttpServletRequest;
-import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import com.herokuapp.kon104.webapp.entity.YConnectOpenIdConfigResponse;
 import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**

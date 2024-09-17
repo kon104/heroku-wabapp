@@ -1,7 +1,7 @@
 package com.herokuapp.kon104.webapp.service;
 
-import javax.servlet.http.HttpServletRequest;
-import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import com.herokuapp.kon104.webapp.entity.YConnectOpenIdConfigResponse;
 
 /**
  * YConnect OpenID Configuration Service Interface
