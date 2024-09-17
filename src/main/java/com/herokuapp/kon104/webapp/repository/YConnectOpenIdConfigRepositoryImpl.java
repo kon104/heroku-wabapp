@@ -2,7 +2,7 @@ package com.herokuapp.kon104.webapp.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
-import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
+import com.herokuapp.kon104.webapp.entity.YConnectOpenIdConfigResponse;
 
 /**
  * YConnect OpenID Configuration Repository Implement Class

@@ -3,8 +3,8 @@ package com.herokuapp.kon104.webapp.repository;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
-import com.herokuapp.kon104.webapp.domain.StockMoveAvgProperties;
-import com.herokuapp.kon104.webapp.domain.StockMoveAvgRecord;
+import com.herokuapp.kon104.webapp.entity.StockMoveAvgProperties;
+import com.herokuapp.kon104.webapp.entity.StockMoveAvgRecord;
 
 /**
  * Stock Move Avg Repository Implement Class

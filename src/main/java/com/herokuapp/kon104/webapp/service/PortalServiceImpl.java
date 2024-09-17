@@ -2,7 +2,7 @@ package com.herokuapp.kon104.webapp.service;
 
 import org.springframework.stereotype.Service;
 import java.util.Calendar;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**

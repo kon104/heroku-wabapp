@@ -1,6 +1,6 @@
 package com.herokuapp.kon104.webapp.repository;
 
-import com.herokuapp.kon104.webapp.domain.YConnectOpenIdConfigResponse;
+import com.herokuapp.kon104.webapp.entity.YConnectOpenIdConfigResponse;
 
 /**
  * YConnect OpenID Configuration Repository Interface

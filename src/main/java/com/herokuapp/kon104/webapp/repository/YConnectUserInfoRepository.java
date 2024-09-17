@@ -1,7 +1,7 @@
 package com.herokuapp.kon104.webapp.repository;
 
 import org.springframework.ui.Model;
-import com.herokuapp.kon104.webapp.domain.YConnectUserInfoResponse;
+import com.herokuapp.kon104.webapp.entity.YConnectUserInfoResponse;
 
 /**
  * YConnect UserInfo Repository Interface

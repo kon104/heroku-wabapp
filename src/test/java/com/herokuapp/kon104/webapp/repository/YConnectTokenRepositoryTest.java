@@ -16,7 +16,7 @@ import static org.springframework.test.web.client.ExpectedCount.times;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method; 
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
-import com.herokuapp.kon104.webapp.domain.YConnectTokenResponse;
+import com.herokuapp.kon104.webapp.entity.YConnectTokenResponse;
 import com.herokuapp.kon104.webapp.testutil.TestUtilApiResponse;
 
 @SpringBootTest

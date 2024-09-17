@@ -1,11 +1,11 @@
 package com.herokuapp.kon104.webapp.repository;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import com.herokuapp.kon104.webapp.domain.YConnectTokenResponse;
+import com.herokuapp.kon104.webapp.entity.YConnectTokenResponse;
 import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 
 /**

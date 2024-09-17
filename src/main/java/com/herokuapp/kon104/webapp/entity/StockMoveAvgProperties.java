@@ -1,4 +1,4 @@
-package com.herokuapp.kon104.webapp.domain;
+package com.herokuapp.kon104.webapp.entity;
 
 import java.util.List;
 import java.util.Map;
