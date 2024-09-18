@@ -14,7 +14,7 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 @Service
 public class YConnectOpenIdConfigServiceImpl implements YConnectOpenIdConfigService
 {
-	private HttpRequestUtility hrUtil;
+	private final HttpRequestUtility hrUtil;
 
 	// {{{ public YConnectOpenIdConfigServiceImpl(HttpRequestUtility hrUtil)
 	public YConnectOpenIdConfigServiceImpl(HttpRequestUtility hrUtil)

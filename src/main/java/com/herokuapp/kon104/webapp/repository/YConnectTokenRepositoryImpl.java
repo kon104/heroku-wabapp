@@ -14,8 +14,8 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 @Repository
 public class YConnectTokenRepositoryImpl implements YConnectTokenRepository
 {
-	private RestTemplate restTemplate;
-	private HttpRequestUtility hrUtil;
+	private final RestTemplate restTemplate;
+	private final HttpRequestUtility hrUtil;
 
 	// {{{ public YConnectTokenRepositoryImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)
 	public YConnectTokenRepositoryImpl(RestTemplate restTemplate, HttpRequestUtility hrUtil)

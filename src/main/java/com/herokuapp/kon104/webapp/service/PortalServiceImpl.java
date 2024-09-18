@@ -11,7 +11,7 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 @Service
 public class PortalServiceImpl implements PortalService
 {
-	private HttpRequestUtility hrUtil;
+	private final HttpRequestUtility hrUtil;
 
 	// {{{ public PortalServiceImpl(HttpRequestUtility hrUtil)
 	public PortalServiceImpl(HttpRequestUtility hrUtil)

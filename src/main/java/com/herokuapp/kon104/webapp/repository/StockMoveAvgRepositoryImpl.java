@@ -13,7 +13,7 @@ import com.herokuapp.kon104.webapp.entity.StockMoveAvgRecord;
 public class StockMoveAvgRepositoryImpl implements StockMoveAvgRepository
 {
 
-	private StockMoveAvgProperties properties;
+	private final StockMoveAvgProperties properties;
 
 	// {{{ public StockMoveAvgRepositoryImpl(StockMoveAvgProperties properties)
 	public StockMoveAvgRepositoryImpl(StockMoveAvgProperties properties)

@@ -10,7 +10,7 @@ import com.herokuapp.kon104.webapp.entity.YConnectOpenIdConfigResponse;
 @Repository
 public class YConnectOpenIdConfigRepositoryImpl implements YConnectOpenIdConfigRepository
 {
-	private RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
 
 	// {{{ public YConnectOpenIdConfigRepositoryImpl(RestTemplate restTemplate)
 	public YConnectOpenIdConfigRepositoryImpl(RestTemplate restTemplate)

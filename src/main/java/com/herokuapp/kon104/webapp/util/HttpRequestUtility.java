@@ -1,6 +1,5 @@
 package com.herokuapp.kon104.webapp.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -17,8 +16,14 @@ import jakarta.servlet.http.HttpServletRequest;
 @Component
 public class HttpRequestUtility
 {
-	@Autowired
-	private RequestMappingHandlerMapping rmhm;
+	private final RequestMappingHandlerMapping rmhm;
+
+	// {{{ public HttpRequestUtility(RequestMappingHandlerMapping rmhm)
+	public HttpRequestUtility(RequestMappingHandlerMapping rmhm)
+	{
+		this.rmhm = rmhm;
+	}
+	// }}}
 
 	// {{{ public String getURL(HttpServletRequest request)
 	public String getURL(HttpServletRequest request)

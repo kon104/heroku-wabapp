@@ -14,7 +14,7 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 @Repository
 public class SiteMapRepositoryImpl implements SiteMapRepository
 {
-	private HttpRequestUtility hrUtil;
+	private final HttpRequestUtility hrUtil;
 
 	// {{{ public SiteMapReppositoryImpl(HttpRequestUtility hrUtil)
 	public SiteMapRepositoryImpl(HttpRequestUtility hrUtil)

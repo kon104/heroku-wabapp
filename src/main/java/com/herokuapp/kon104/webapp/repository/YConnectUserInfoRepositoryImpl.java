@@ -13,7 +13,7 @@ import com.herokuapp.kon104.webapp.entity.YConnectUserInfoResponse;
 @Repository
 public class YConnectUserInfoRepositoryImpl implements YConnectUserInfoRepository
 {
-	private RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
 
 	// {{{ public YConnectUserInfoRepositoryImpl(RestTemplate restTemplate)
 	public YConnectUserInfoRepositoryImpl(RestTemplate restTemplate)

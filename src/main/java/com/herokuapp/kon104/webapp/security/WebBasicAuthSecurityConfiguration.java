@@ -13,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebBasicAuthSecurityConfiguration
 {
 
-	private BasicAuthenticationProvider provider;
+	private final BasicAuthenticationProvider provider;
 
 	// {{{ public WebBasicAuthSecurityConfiguration(BasicAuthenticationProvider provider)
 	public WebBasicAuthSecurityConfiguration(BasicAuthenticationProvider provider)
