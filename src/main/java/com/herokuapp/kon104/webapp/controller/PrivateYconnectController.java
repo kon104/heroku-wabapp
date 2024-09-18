@@ -17,7 +17,7 @@ import com.herokuapp.kon104.webapp.service.YConnectService;
 @RequestMapping("/private/yconnect")
 public class PrivateYconnectController
 {
-	private YConnectService service;
+	private final YConnectService service;
 
 	// {{{ public PrivateYconnectController(...)
 	public PrivateYconnectController(YConnectService service)

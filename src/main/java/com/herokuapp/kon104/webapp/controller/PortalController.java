@@ -16,9 +16,9 @@ import com.herokuapp.kon104.webapp.service.RobotsService;
 @Controller
 public class PortalController
 {
-	private PortalService portal;
-	private SiteMapRepository sitemap;
-	private RobotsService robots;
+	private final PortalService portal;
+	private final SiteMapRepository sitemap;
+	private final RobotsService robots;
 
 	// {{{ public PortalController(PortalService portal, SiteMapRepository sitemap, RobotsService robots)
 	public PortalController(PortalService portal, SiteMapRepository sitemap, RobotsService robots)

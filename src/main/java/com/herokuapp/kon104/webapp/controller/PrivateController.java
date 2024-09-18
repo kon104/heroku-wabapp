@@ -17,7 +17,7 @@ import com.herokuapp.kon104.webapp.repository.StockMoveAvgRepository;
 public class PrivateController
 {
 
-	private StockMoveAvgRepository moveavg;
+	private final StockMoveAvgRepository moveavg;
 
 	// {{{ public PrivateController(StockMoveAvgRepository moveavg)
 	public PrivateController(StockMoveAvgRepository moveavg)

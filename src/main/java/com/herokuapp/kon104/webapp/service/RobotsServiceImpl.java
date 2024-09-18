@@ -11,7 +11,7 @@ import com.herokuapp.kon104.webapp.util.HttpRequestUtility;
 @Service
 public class RobotsServiceImpl implements RobotsService
 {
-	private HttpRequestUtility hrUtil;
+	private final HttpRequestUtility hrUtil;
 
 	// {{{ public RobotsServiceImpl(HttpRequestUtility hrUtil)
 	public RobotsServiceImpl(HttpRequestUtility hrUtil)

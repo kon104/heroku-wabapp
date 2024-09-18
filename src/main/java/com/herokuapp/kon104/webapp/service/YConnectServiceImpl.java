@@ -22,12 +22,12 @@ import com.herokuapp.kon104.webapp.service.YConnectOpenIdConfigService;
 @Service
 public class YConnectServiceImpl implements YConnectService
 {
-	private YConnectOpenIdConfigRepository yconOpenIdConfRepository;
-	private YConnectOpenIdConfigService yconOpenIdConfService;
-	private YConnectTokenRepository yconToken;
-	private YConnectUserInfoRepository yconUserInfo;
-	private YConnectIdTokenService yconIdToken;
-	private HttpSession session;
+	private final YConnectOpenIdConfigRepository yconOpenIdConfRepository;
+	private final YConnectOpenIdConfigService yconOpenIdConfService;
+	private final YConnectTokenRepository yconToken;
+	private final YConnectUserInfoRepository yconUserInfo;
+	private final YConnectIdTokenService yconIdToken;
+	private final HttpSession session;
 
 	// {{{ public YConnectService(...)
 	public YConnectServiceImpl(

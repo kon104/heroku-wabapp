@@ -26,7 +26,7 @@ import java.util.stream.StreamSupport;
 public class YConnectIdTokenServiceImpl implements YConnectIdTokenService
 {
 
-	private RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
 
 	// {{{ public YConnectIdTokenServiceImpl(RestTemplate restTemplate)
 	public YConnectIdTokenServiceImpl(RestTemplate restTemplate)
