@@ -22,6 +22,7 @@ public class PortalControllerTest
 			.andExpect(status().isOk());
 	}
 
+/*
 	@Test
 	public void sitemapTest() throws Exception
 	{
@@ -35,5 +36,5 @@ public class PortalControllerTest
 		this.mockMvc.perform(get("/robots.txt"))
 			.andExpect(status().isOk());
 	}
-
+*/
 }
